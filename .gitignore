@@ -1,0 +1,7 @@
+# Garbage Files
+.DS_Store
+*/.DS_Store
+
+# API Keys/Tokens
+keys.py
+*/keys.py

@@ -1,6 +1,7 @@
 from models import db, Item
 import json
 from app import app
+from keys import RAPIDAPI_POSHMARK_AUTH_TOKEN
 import requests
 
 # ▼▼▼▼ to open a static db
@@ -17,7 +18,7 @@ querystring = { "query":"puma sneakers","domain":"com"}
 
 headers = {
 	"Accept-Encoding": "gzip, deflate",
-	"X-RapidAPI-Key": "whooooooooo",
+	"X-RapidAPI-Key": RAPIDAPI_POSHMARK_AUTH_TOKEN,
 	"X-RapidAPI-Host": "poshmark.p.rapidapi.com"
 }
 
