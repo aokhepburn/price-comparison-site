@@ -1,22 +1,23 @@
 from models import db, Item
 import json
 from app import app
-
 import requests
 
 # ▼▼▼▼ to open a static db
 # with open("nike-air-max-poshmark-test.json") as f:
     # data: dict = json.load(f)
 
+
+#poshmark responses 
 url = "https://poshmark.p.rapidapi.com/search"
 
 userInput = ""
 
-querystring = {"query":"puma sneakers","domain":"com"}
+querystring = { "query":"puma sneakers","domain":"com"}
 
 headers = {
 	"Accept-Encoding": "gzip, deflate",
-	"X-RapidAPI-Key": "wheeeeee",
+	"X-RapidAPI-Key": "whooooooooo",
 	"X-RapidAPI-Host": "poshmark.p.rapidapi.com"
 }
 
