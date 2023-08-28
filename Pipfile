@@ -17,6 +17,7 @@ faker = "14.2.0"
 jsonify = "0.5"
 sqlalchemy-serializer = "1.4.1"
 flask-cors = "*"
+requests = "*"
 
 [dev-packages]
 
