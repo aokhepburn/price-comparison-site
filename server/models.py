@@ -20,7 +20,7 @@ db = SQLAlchemy(metadata=metadata)
 #ALICE'S INTITAL TABLES
 
 #an item can belong to many wishlists
-class Item(db.Model):
+class PoshmarkItem(db.Model):
     __tablename__="item_table"
     id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String)
