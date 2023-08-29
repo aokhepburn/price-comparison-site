@@ -4,10 +4,10 @@ from flask_migrate import Migrate
 from flask import Flask, make_response, jsonify, request
 import os
 import requests
-from dotenv import load_dotenv 
+# from dotenv import load_dotenv 
 
 
-load_dotenv()
+# load_dotenv()
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DATABASE = os.environ.get(
