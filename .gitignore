@@ -1,10 +1,19 @@
 # Garbage Files
 .DS_Store
 */.DS_Store
+<<<<<<< HEAD
 */migrations
 */__pycache__
 app.db
 Pipfile.lock
+=======
+data
+.env
+migrations 
+instance
+.venv
+__pycache__
+>>>>>>> refs/remotes/origin/main
 
 # API Keys/Tokens
 keys.py
