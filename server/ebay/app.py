@@ -39,9 +39,10 @@ def signup():
         username = request.form["username"]
         email = request.form["email"]
         password = request.form["password"]
+
         hashed_password = bcrypt.generate_password_hash(password).decode("utf-8")
 
-        new_user = User(username=username, email=email, password=hashed_password)
+        new_user = User(username=username, email=email, password_hash=hashed_password)
         db.session.add(new_user)
         db.session.commit()
 
@@ -64,7 +65,7 @@ def login():
         password = request.form["password"]
 
         user = User.query.filter_by(email=email).first()
-        if user and bcrypt.check_password_hash(user.password, password):
+        if user and user.check_password(password):  # Using the check_password method
             login_user(user)
             return redirect(url_for("index"))
         else:
