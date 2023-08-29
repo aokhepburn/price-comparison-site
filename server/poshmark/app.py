@@ -4,7 +4,10 @@ from flask_migrate import Migrate
 from flask import Flask, make_response, jsonify, request
 import os
 import requests
-from keys import RAPIDAPI_POSHMARK_AUTH_TOKEN
+from dotenv import load_dotenv 
+
+
+load_dotenv()
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DATABASE = os.environ.get(
@@ -24,11 +27,13 @@ db.init_app(app)
 
 #function for retrieving poshmark api data
 def get_data_from_poshmark_api(userInput):
+    rapidapi_key = os.getenv('POSHMARK_RAPIDAPI_KEY')
+
     url = "https://poshmark.p.rapidapi.com/search"
     querystring = { "query":userInput,"domain":"com"}
     headers = {
         "Accept-Encoding": "gzip, deflate",
-        "X-RapidAPI-Key": RAPIDAPI_POSHMARK_AUTH_TOKEN,
+        "X-RapidAPI-Key": rapidapi_key,
         "X-RapidAPI-Host": "poshmark.p.rapidapi.com"
     }
     poshmark_response = requests.get(url, headers=headers, params=querystring)
@@ -37,7 +42,7 @@ def get_data_from_poshmark_api(userInput):
 
 @app.route('/')
 def home():
-    return ''
+    return "This is the home page"
 
 #post request to intialize new search posts
 @app.post('/items')

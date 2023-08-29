@@ -20,11 +20,11 @@ db.init_app(app)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return "Hello"
 
 @app.route('/search/<search_query>')
 def search(search_query):
-    rapidapi_key = os.getenv('RAPIDAPI_KEY')  # Get the API key from environment variables
+    rapidapi_key = os.getenv('EBAY_RAPIDAPI_KEY')  # Get the API key from environment variables
 
     url = f"https://ebay-search-result.p.rapidapi.com/search/{search_query.replace(' ', '%20')}"
 
@@ -58,8 +58,6 @@ def search(search_query):
                 added_items.append(item)
             except Exception as e:
                 db.session.rollback()
-                print (e)
-                print('duplicate')
 
 
         return make_response(jsonify([i.to_dict() for i in added_items]), 200)
