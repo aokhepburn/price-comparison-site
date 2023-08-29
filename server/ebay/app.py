@@ -31,7 +31,7 @@ def load_user(user_id):
 
 @app.route("/")
 def index():
-    return "Hello"
+    return "Auth routes"
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
@@ -91,21 +91,18 @@ def protected():
     return "This is a protected route."
 
 
-# API ROUTES
-
-
-@app.route('/')
+@app.route('/search')
 def hello():
     return "Hello"
 
 @app.route('/search/<search_query>')
 def search(search_query):
-    rapidapi_key = os.getenv('EBAY_RAPIDAPI_KEY')  # Get the API key from environment variables
+    rapidapi_key = os.getenv('EBAY_RAPIDAPI_KEY') 
 
     url = f"https://ebay-search-result.p.rapidapi.com/search/{search_query.replace(' ', '%20')}"
 
     headers = {
-        "X-RapidAPI-Key": rapidapi_key,  # Use the API key variable
+        "X-RapidAPI-Key": rapidapi_key,
         "X-RapidAPI-Host": "ebay-search-result.p.rapidapi.com"
     }
 
@@ -125,10 +122,6 @@ def search(search_query):
             item = Item(title=title, price = price, image = image, url= url)
             
             try:
-                # instance = Item.query.filter(Item.url == url).first()
-                
-                # if instance is None:
-                    # print(item.to_dict())
                 db.session.add(item)
                 db.session.commit()
                 added_items.append(item)
