@@ -42,7 +42,7 @@ def get_data_from_poshmark_api(userInput):
 
 @app.route('/')
 def home():
-    return ''
+    return "This is the home page"
 
 #post request to intialize new search posts
 @app.post('/items')

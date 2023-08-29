@@ -27,7 +27,7 @@ class Item(db.Model):
         #data[0]title
     brand = db.Column(db.String)
         #data[0]["brand"]
-    description = db.Column(db.String, unique=True)
+    description = db.Column(db.String)
         #data[0]description
     size = db.Column(db.String)
         #data[0]inventory.size_quantities[0]display_with_size_system
@@ -36,7 +36,7 @@ class Item(db.Model):
     image = db.Column(db.String)
         #data[0]picture_url
 
-    wishlist_items = db.relationship("Wishlist", back_populates = "items_in_wishlist")
+    # wishlist_items = db.relationship("Wishlist", back_populates = "items_in_wishlist")
 
     def to_dict(self):
         return {"id":self.id, "brand":(self.brand), "description":self.description, "size":self.size, "price":self.price}

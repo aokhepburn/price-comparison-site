@@ -58,8 +58,6 @@ def search(search_query):
                 added_items.append(item)
             except Exception as e:
                 db.session.rollback()
-                print (e)
-                print('duplicate')
 
 
         return make_response(jsonify([i.to_dict() for i in added_items]), 200)
