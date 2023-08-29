@@ -18,6 +18,8 @@ jsonify = "0.5"
 sqlalchemy-serializer = "1.4.1"
 flask-cors = "*"
 requests = "*"
+pandas = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
