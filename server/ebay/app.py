@@ -95,7 +95,7 @@ def protected():
 
 
 @app.route('/')
-def index():
+def hello():
     return "Hello"
 
 @app.route('/search/<search_query>')
