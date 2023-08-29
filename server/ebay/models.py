@@ -11,6 +11,8 @@ class Item(db.Model):
     price = db.Column(db.String)
     image = db.Column(db.String, unique=True)
     url = db.Column(db.String)
+    
+    wishlist = db.relationship("Wishlist", back_populates="item")
 
     def to_dict(self):
         return {
@@ -28,6 +30,8 @@ class User(db.Model):
     username = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
+    
+    wishlists = db.relationship("Wishlist", back_populates="user")
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -37,3 +41,12 @@ class User(db.Model):
 
     def __repr__(self):
         return f"<User {self.username}>"
+
+class Wishlist(db.Model):
+    __tablename__ = "wishlist_table"
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    item_id = db.Column(db.Integer, db.ForeignKey("item.id"))
+    
+    user = db.relationship("User", back_populates="wishlists")
+    item = db.relationship("Item", back_populates="wishlist")

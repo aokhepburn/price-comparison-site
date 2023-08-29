@@ -96,6 +96,46 @@ def protected():
 def hello():
     return "Hello"
 
+
+@app.route("/wishlist")
+@login_required
+def wishlist():
+    user = current_user
+    wishlist_items = user.wishlist_items
+
+    wishlist_data = []
+    for item in wishlist_items:
+        wishlist_data.append({
+            "id": item.id,
+            "title": item.title,
+            "price": item.price,
+            "image": item.image,
+            "url": item.url
+        })
+
+    return jsonify(wishlist_data)
+
+
+@app.post("/add_to_wishlist/<int:item_id>")
+@login_required
+def add_to_wishlist(item_id):
+    user = current_user
+    item = Item.query.get(item_id)
+
+    if not item:
+        flash("Item not found.", "danger")
+        return redirect(url_for("index"))
+
+    if Wishlist.query.filter_by(user_id=user.id, item_id=item.id).first():
+        flash("Item is already in your wishlist.", "info")
+    else:
+        new_wishlist_item = Wishlist(user_id=user.id, item_id=item.id)
+        db.session.add(new_wishlist_item)
+        db.session.commit()
+        flash("Item added to your wishlist.", "success")
+
+    return redirect(url_for("index"))
+
 @app.route('/search/<search_query>')
 def search(search_query):
     rapidapi_key = os.getenv('EBAY_RAPIDAPI_KEY') 
