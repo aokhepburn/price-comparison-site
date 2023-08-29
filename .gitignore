@@ -1,6 +1,10 @@
 # Garbage Files
 .DS_Store
 */.DS_Store
+*/migrations
+*/__pycache__
+app.db
+Pipfile.lock
 
 # API Keys/Tokens
 keys.py
