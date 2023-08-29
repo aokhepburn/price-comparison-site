@@ -27,7 +27,7 @@ class Item(db.Model):
         #data[0]title
     brand = db.Column(db.String)
         #data[0]["brand"]
-    description = db.Column(db.String)
+    description = db.Column(db.String, unique=True)
         #data[0]description
     size = db.Column(db.String)
         #data[0]inventory.size_quantities[0]display_with_size_system
@@ -36,18 +36,23 @@ class Item(db.Model):
     image = db.Column(db.String)
         #data[0]picture_url
 
-#a wishlist can have many items but will belong to only ONE user
-class Wishlist(db.Model):
-    __tablename__="wishlist_table"
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey())
-    item_id = db.Column(db.Integer, db.ForeignKey("item_table.id"))
+    wishlist_items = db.relationship("Wishlist", back_populates = "items_in_wishlist")
 
-    items = db.relationship()
+    def to_dict(self):
+        return {"id":self.id, "brand":(self.brand), "description":self.description, "size":self.size, "price":self.price}
+
+#a wishlist can have many items but will belong to only ONE user
+# class Wishlist(db.Model):
+#     __tablename__="wishlist_table"
+#     id = db.Column(db.Integer, primary_key=True)
+#     user_id = db.Column(db.Integer, db.ForeignKey())
+#     item_id = db.Column(db.Integer, db.ForeignKey("item_table.id"))
+
+#     items_in_wishlist = db.relationship("Item", back_populates="wishlist_items")
 
 #a user can have many wishlists
-class User(db.Model):
-    __tablename__="user_table"
-    id = db.Column(db.Integer, primary_key = True)
-    password = db.Column(db.Integer)
-    username = db.Column(db.String, nullable = False, unique = True)
+# class User(db.Model):
+#     __tablename__="user_table"
+#     id = db.Column(db.Integer, primary_key = True)
+#     password = db.Column(db.Integer)
+#     username = db.Column(db.String, nullable = False, unique = True)
