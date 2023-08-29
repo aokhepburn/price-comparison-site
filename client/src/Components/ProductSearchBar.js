@@ -1,9 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from 'styled-components';
 import {Link} from 'react-router-dom'
 import Searchbar from "./ProductSearchBar"
 
-export default function Search () {
+export default function Search ({setSearchInput, searchInput}) {
 
     const [newSearch, setNewSearch] = useState ("")
 
