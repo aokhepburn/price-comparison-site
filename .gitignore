@@ -1,6 +1,12 @@
 # Garbage Files
 .DS_Store
 */.DS_Store
+data
+.env
+migrations 
+instance
+.venv
+__pycache__
 
 # API Keys/Tokens
 keys.py
