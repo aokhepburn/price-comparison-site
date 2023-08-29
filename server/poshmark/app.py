@@ -27,7 +27,7 @@ db.init_app(app)
 
 #function for retrieving poshmark api data
 def get_data_from_poshmark_api(userInput):
-    rapidapi_key = os.getenv('RAPIDAPI_KEY')
+    rapidapi_key = os.getenv('POSHMARK_RAPIDAPI_KEY')
 
     url = "https://poshmark.p.rapidapi.com/search"
     querystring = { "query":userInput,"domain":"com"}
