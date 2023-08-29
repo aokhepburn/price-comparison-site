@@ -24,7 +24,7 @@ def index():
 
 @app.route('/search/<search_query>')
 def search(search_query):
-    rapidapi_key = os.getenv('RAPIDAPI_KEY')  # Get the API key from environment variables
+    rapidapi_key = os.getenv('EBAY_RAPIDAPI_KEY')  # Get the API key from environment variables
 
     url = f"https://ebay-search-result.p.rapidapi.com/search/{search_query.replace(' ', '%20')}"
 
