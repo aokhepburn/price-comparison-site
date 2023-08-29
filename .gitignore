@@ -1,19 +1,36 @@
 # Garbage Files
 .DS_Store
 */.DS_Store
-<<<<<<< HEAD
-*/migrations
-*/__pycache__
+
+# Database Files
 app.db
-Pipfile.lock
-=======
-data
-.env
-migrations 
+*/app.db
 instance
-.venv
+*/instance
+migrations
+*/migrations
+
+# Python Caching Files
 __pycache__
->>>>>>> refs/remotes/origin/main
+*/__pycache__
+
+# Locked Version States for Python
+Pipfile.lock
+*/Pipfile.lock
+
+# Raw Dataset(s)
+data
+*/data
+
+# API Keys/Tokens
+keys.py
+*/keys.py
+
+# Virtual Environment Stuffs
+.env 
+*/.env
+.venv
+*/.venv
 
 # API Keys/Tokens
 keys.py
