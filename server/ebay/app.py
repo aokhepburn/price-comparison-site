@@ -20,7 +20,7 @@ db.init_app(app)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return "Hello"
 
 @app.route('/search/<search_query>')
 def search(search_query):
