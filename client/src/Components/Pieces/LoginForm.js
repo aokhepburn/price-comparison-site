@@ -1,9 +1,15 @@
 import React, {useState} from "react";
 
-export default function LoginForm({handleChangeUsername, handleChangePassword, password, username}) {
+export default function LoginForm({handleChangeUsername, handleChangePassword, password, username, attemptLogin}) {
 
+    function handleSubmit(e) {
+        e.preventDefault()
+        attemptLogin({username, password})
+    }   
+    
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
+            <h1>Login your account</h1>
             <h2> Username</h2>
                 <input
                 type= "text"

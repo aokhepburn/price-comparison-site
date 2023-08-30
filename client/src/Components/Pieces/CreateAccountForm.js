@@ -1,9 +1,14 @@
 import React, {useState} from "react";
 
-export default function CreateAccountFormForm({handleChangeUsername, handleChangePassword, password, username}) {
+export default function CreateAccountForm({createAccount, handleChangeUsername, handleChangePassword, password, username}) {
 
+    function handleSubmit(e) {
+        e.preventDefault()
+        createAccount({username, password})
+    }   
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
+            <h1>Create your account</h1>
             <h2> Username</h2>
                 <input
                 type= "text"

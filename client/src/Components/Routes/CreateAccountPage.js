@@ -9,14 +9,9 @@ const [password, setPassword] = useState("")
 const handleChangeUsername = e => setUsername(e.target.value)
 const handleChangePassword = e => setPassword(e.target.value)
 
-function handleSubmit(e) {
-    e.preventDefault()
-    createAccount({username, password})
-}   
 
 return (
     <div className="signin-container">
-        <p>Create an Account</p>
-        <SignUpForm handleChangeUsername = {handleChangeUsername} handleChangePassword={handleChangePassword} username={username} password={password}/>
+        <SignUpForm handleChangeUsername = {handleChangeUsername} handleChangePassword={handleChangePassword} username={username} password={password} createAccount={createAccount}/>
     </div>
 )};
