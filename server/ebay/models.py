@@ -3,26 +3,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
 
-class Item(db.Model):
-    __tablename__ = 'item'
-    
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String, nullable=False)
-    price = db.Column(db.String)
-    image = db.Column(db.String, unique=True)
-    url = db.Column(db.String)
-    
-    wishlist = db.relationship("Wishlist", back_populates="item")
-
-    def to_dict(self):
-        return {
-            'id': self.id,
-            'title': self.title,
-            'price': self.price,
-            'image': self.image,
-            'url': self.url
-        }
-
 class User(db.Model):
     __tablename__ = 'user'
     
@@ -49,4 +29,31 @@ class Wishlist(db.Model):
     item_id = db.Column(db.Integer, db.ForeignKey("item.id"))
     
     user = db.relationship("User", back_populates="wishlists")
-    item = db.relationship("Item", back_populates="wishlist")
+    item = db.relationship("Item", back_populates="wishlists")
+
+
+item_wishlist_association = db.Table(
+    "item_wishlist_association",
+    db.Column("item_id", db.Integer, db.ForeignKey("item.id")),
+    db.Column("wishlist_id", db.Integer, db.ForeignKey("wishlist_table.id"))
+)
+
+class Item(db.Model):
+    __tablename__ = 'item'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String, nullable=False)
+    price = db.Column(db.String)
+    image = db.Column(db.String, unique=True)
+    url = db.Column(db.String)
+
+    wishlists = db.relationship("Wishlist", secondary=item_wishlist_association, back_populates="item")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'price': self.price,
+            'image': self.image,
+            'url': self.url
+        }
