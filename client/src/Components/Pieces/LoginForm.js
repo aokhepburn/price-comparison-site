@@ -9,7 +9,7 @@ export default function LoginForm({handleChangeUsername, handleChangePassword, p
     
     return (
         <form onSubmit={handleSubmit}>
-            <h1>Login your account</h1>
+            <h1>Login to your account</h1>
             <h2> Username</h2>
                 <input
                 type= "text"
