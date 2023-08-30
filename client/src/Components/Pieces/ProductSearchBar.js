@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import styled from 'styled-components';
 import {Link} from 'react-router-dom'
-import Searchbar from "./ProductSearchBar"
 
 export default function Search ({setSearchInput, searchInput}) {
 

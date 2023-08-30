@@ -1,9 +1,10 @@
+import React from 'react';
 import {NavLink, useLocation} from 'react-router-dom';
 import styled from 'styled-components';
-import logo from '../assets/logo.png';
+// import logo from '../assets/logo.png';
 import {Link} from 'react-router-dom';
-import ProductSearchBar from "./ProductSearchBar";
-import App from "../Routes/App";
+import ProductSearchBar from "../Pieces/ProductSearchBar";
+
 
 export default function Navbar ({searchInput, setSearchInput}) {
     const location = useLocation();
@@ -11,27 +12,23 @@ export default function Navbar ({searchInput, setSearchInput}) {
   // Conditionally render the Searchbar based on the current route
     const renderSearchbar = location.pathname !== '/';
     return ( 
+        <>
             <NavContainer>
                 <div className="nav-center">
-                    {/* <span className="logo">{logo}</span> */}
-                    <Link to="/">
+                    {/* <Link to="/">
                     <img src={logo} alt="thifty logo" className="logo" />
-                    </Link>
-                    {/* <div className="searchbar">
-                    < Searchbar /> 
-                    </div> */}
-                    {renderSearchbar && (
-                        <div className="searchbar">
-                        <ProductSearchBar/>
-                        </div>
-                    )}
+                    </Link> */}
+                    <ProductSearchBar searchInput={searchInput} setSearchInput={setSearchInput}/>
                     <div className="nav-links">
-                        <NavLink to ='/' className='nav-link'>Home</NavLink>
+                        {/* <NavLink to ='/home' className='nav-link'>Home</NavLink> */}
                         {/* <NavLink to ='/shop' className='nav-link'>Shop</NavLink> */}
                         <NavLink to ='/wishlist' className='nav-link'>Wishlist</NavLink>
+                        <Link to='/signup'><button >Create an Account</button></Link>
+                        <Link to='/login'><button >Login</button></Link>
                     </div>
                 </div>
             </NavContainer>
+        </>
     );
 };
 const NavContainer = styled.nav `
