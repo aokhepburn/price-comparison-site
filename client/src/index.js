@@ -1,38 +1,76 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './Components/scrappp';
 import reportWebVitals from './reportWebVitals';
 import {createBrowserRouter, RouterProvider} from "react-router-dom"
-
-import Home from "./Routes/Home" ;
-import Shop from "./Routes/Products" ;
-import Wishlist from "./Routes/Wishlist";
-import Layout from "./Routes/App";
-import Error from "./Routes/Error";
+import Root from "./Components/Root";
+import Welcome from "./Components/Routes/Welcome";
+import Error from "./Components/Error";
+import SignUpPage from "./Components/Routes/CreateAccountPage";
+import LoginPage from "./Components/Routes/LoginPage";
+import Products from "./Components/Routes/Products" ;
+import Wishlist from "./Components/Routes/Wishlist";
 
 
 const router = createBrowserRouter([
   { 
-    element: <Layout/>,
+    path: "/",
+    element: <Root/>,
     errorElement: <Error />,
     children: [
       {
       path: "/",
       index: true,
-      element: <Home/>,
+      element: <Welcome/>,
       },
       {
         path: "/products",
-        element: <Shop/>,
+        element: <Products/>,
       },
       {
-        path: 'wishlist',
+        path: "/wishlist",
         element: <Wishlist/>
+      },
+      {
+        path: "/signup",
+        element: <SignUpPage/>
+      },
+      {
+        path: "/login",
+        element: <LoginPage/>
       },
     ]
   },
  ]);
+
+// const router = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <App />,
+//     errorElement: <Error/>
+//   },
+//   {
+//     path: "/home",
+//     element: <Home />,
+//     index: true,
+//   },
+//   {
+//     path: "/products",
+//     element: <Shop />,
+//   },
+//   {
+//     path: "/wishlist",
+//     element: <Wishlist />,
+//   },
+//   {
+//     path: "/signup",
+//     element: <SignUpPage />,
+//   },
+//   {
+//     path: "/login",
+//     element: <LoginPage />,
+//   },
+// ]);
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -45,7 +83,7 @@ root.render(
 // const Root = () => {
 //   return <RouterProvider router={router}/>
 // }
-export default App;
+// export default App;
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
