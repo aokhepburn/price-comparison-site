@@ -23,7 +23,6 @@ headers = {
 }
 
 poshmark_response = requests.get(url, headers=headers, params=querystring)
-#print(response.json.stringify())
 data = poshmark_response.json()
 
 def create_items():

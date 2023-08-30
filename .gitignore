@@ -35,3 +35,7 @@ keys.py
 # API Keys/Tokens
 keys.py
 */keys.py
+
+#NPM Dependencies
+node_modules
+*/node_modules
