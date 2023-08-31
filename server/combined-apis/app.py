@@ -13,7 +13,6 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DATABASE = os.environ.get(
     "DB_URI", f"sqlite:///{os.path.join(BASE_DIR, 'app.db')}")
 
-
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///app.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -31,7 +30,6 @@ def get_data_from_ebay_api(userInput):
 
     headers = {
         "X-RapidAPI-Key": rapidapi_key_ebay,  # Use the API key variable
-        #"X-RapidAPI-Key": '6e4aead265msh02d5cee6251f7f8p17e904jsna7042731095f',
         "X-RapidAPI-Host": "ebay-search-result.p.rapidapi.com"
     }
     ebay_response = requests.get(url, headers=headers)
@@ -51,7 +49,6 @@ def get_data_from_poshmark_api(userInput):
     headers = {
         "Accept-Encoding": "gzip, deflate",
         "X-RapidAPI-Key": rapidapi_key_poshmark,
-        #"X-RapidAPI-Key": '155c682000mshe166b9d83768cf4p15e5f3jsnb360b6a1250b',
         "X-RapidAPI-Host": "poshmark.p.rapidapi.com"
     }
     poshmark_response = requests.get(url, headers=headers, params=querystring)

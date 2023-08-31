@@ -1,34 +1,51 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import "./CSS/CreateAccountForm.css"; // Import the CSS file
 
-export default function CreateAccountForm({createAccount, handleChangeUsername, handleChangePassword, password, username}) {
-
+export default function CreateAccountForm({
+    createAccount,
+    handleChangeUsername,
+    handleChangePassword,
+    password,
+    username,
+}) {
     function handleSubmit(e) {
-        e.preventDefault()
-        createAccount({username, password})
-    }   
+        e.preventDefault();
+        createAccount({ username, password });
+    }
+
     return (
-        <form onSubmit={handleSubmit}>
-            <h1>Create your account</h1>
-            <h2> Username</h2>
-                <input
-                type= "text"
-                onChange={handleChangeUsername}
-                placeholder="enter a username"
-                value={username}
-                
-                />
-                <br />
-            <h2>Password</h2>
-                <input
-                type= "text"
-                onChange={handleChangePassword}
-                placeholder="enter a password"
-                value={password}
-                />
-                <br />
-                
-                <input type="submit"
-                value ='Create new account'
-                />
-        </form>
-    )};
+        <div className="container">
+            <div className="left">
+                <h1>Create your account</h1>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+            </div>
+            <div className="right">
+                <form className="form-container" onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <h2>Username</h2>
+                        <input
+                            className="input-field"
+                            type="text"
+                            onChange={handleChangeUsername}
+                            placeholder="Enter a username"
+                            value={username}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <h2>Password</h2>
+                        <input
+                            className="input-field"
+                            type="password"
+                            onChange={handleChangePassword}
+                            placeholder="Enter a password"
+                            value={password}
+                        />
+                    </div>
+                    <input className="submit-button" type="submit" value="Create new account" />
+                </form>
+            </div>
+        </div>
+    );
+}
