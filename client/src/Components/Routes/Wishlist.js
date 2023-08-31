@@ -90,4 +90,10 @@ function Wishlist() {
     );
 }
 
-export default Wishlist;
+export default function Wishlist () {
+    return 
+    <>
+        <displayWishlistProducts/>
+        <wishlistSearchbar />
+    </>
+};

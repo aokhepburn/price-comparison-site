@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import styled from 'styled-components';
 import {Link} from 'react-router-dom'
 
-export default function Search ({setSearchInput, searchInput}) {
+export default function ProductSearchBar ({handleSearch}) {
 
     const [newSearch, setNewSearch] = useState ("")
 
@@ -12,22 +12,23 @@ export default function Search ({setSearchInput, searchInput}) {
 
     function handleSubmit (e) {
         e.preventDefault()
-        setSearchInput(newSearch)
+        console.log("submitted")
+        handleSearch(newSearch)
+        //(/search POST request to backend )
     }
 
     return (
         <SearchBarContainer>
-            <div className="search-container" onSubmit={handleSubmit}>
+            <form className="search-container" onSubmit={handleSubmit}>
                 <input
                     className = "search-bar"
                     type="text"
                     placeholder="search products" 
                     onChange={handleChange}
-                    value={searchInput}           
+                    value={newSearch}           
                 />
-                <Link to='/products'><button type="submit" >🔍</button>
-                </Link>
-        </div>
+                <Link to='/products'><button>🔍</button></Link>
+            </form>
         </SearchBarContainer>
     )
 }

@@ -35,6 +35,8 @@ keys.py
 # API Keys/Tokens
 keys.py
 */keys.py
+server/combined-apis/.env
+*.env
 
 #NPM Dependencies
 node_modules
