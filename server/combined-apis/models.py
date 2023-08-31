@@ -1,8 +1,20 @@
 
 from flask_sqlalchemy import SQLAlchemy
-from werkzeug.security import generate_password_hash, check_password_hash
+#from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy import MetaData
+from sqlalchemy.orm import validates
+from sqlalchemy.ext.associationproxy import association_proxy
+from sqlalchemy_serializer import SerializerMixin
 
-db = SQLAlchemy()
+
+metadata = MetaData(
+    naming_convention={
+        "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
+    }
+)
+db = SQLAlchemy(metadata=metadata)
+
+#db = SQLAlchemy()
 
 class User(db.Model):
     __tablename__ = 'user'
@@ -20,8 +32,8 @@ class User(db.Model):
     # def check_password(self, password):
     #     return check_password_hash(self.password_hash, password)
 
-    def __repr__(self):
-        return f"<User {self.username}>"
+    def to_dict(self):
+        return {"user_id": self.id, "username":self.username}
 
 class Wishlist(db.Model):
     __tablename__ = "wishlist_table"
@@ -43,9 +55,14 @@ class Item(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
-    price = db.Column(db.String)
-    image = db.Column(db.String, unique=True)
+    price = db.Column(db.String, nullable=False)
+    image = db.Column(db.String, unique = True)
+    #for ebay only
     url = db.Column(db.String)
+    #for poshmark only
+    brand = db.Column(db.String)
+    size = db.Column(db.String)
+    description = db.Column(db.String)
 
     wishlists = db.relationship("Wishlist", secondary=item_wishlist_association, back_populates="item")
 
@@ -63,20 +80,6 @@ class Item(db.Model):
 
 
 
-# from flask_sqlalchemy import SQLAlchemy
-# from sqlalchemy import MetaData
-# from sqlalchemy.orm import validates
-# from sqlalchemy.ext.associationproxy import association_proxy
-# from sqlalchemy_serializer import SerializerMixin
-# import string
-
-
-# metadata = MetaData(
-#     naming_convention={
-#         "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
-#     }
-# )
-# db = SQLAlchemy(metadata=metadata)
 
 
 # class Item(db.Model):

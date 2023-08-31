@@ -5,6 +5,9 @@ from models import db, Item, User, Wishlist
 import os
 import requests
 from flask_bcrypt import Bcrypt
+from dotenv import load_dotenv 
+
+load_dotenv()
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DATABASE = os.environ.get(
@@ -28,6 +31,7 @@ def get_data_from_ebay_api(userInput):
 
     headers = {
         "X-RapidAPI-Key": rapidapi_key_ebay,  # Use the API key variable
+        #"X-RapidAPI-Key": '6e4aead265msh02d5cee6251f7f8p17e904jsna7042731095f',
         "X-RapidAPI-Host": "ebay-search-result.p.rapidapi.com"
     }
     ebay_response = requests.get(url, headers=headers)
@@ -47,6 +51,7 @@ def get_data_from_poshmark_api(userInput):
     headers = {
         "Accept-Encoding": "gzip, deflate",
         "X-RapidAPI-Key": rapidapi_key_poshmark,
+        #"X-RapidAPI-Key": '155c682000mshe166b9d83768cf4p15e5f3jsnb360b6a1250b',
         "X-RapidAPI-Host": "poshmark.p.rapidapi.com"
     }
     poshmark_response = requests.get(url, headers=headers, params=querystring)
@@ -67,9 +72,8 @@ def index():
 @app.post('/search')
 def search():
     Item.query.delete()
-    # rapidapi_key_ebay = os.getenv('EBAY_RAPIDAPI_KEY')  # Get the API key from environment variables
 
-    post_data = request.json
+    post_data = request.get_json()
     ebay_data = get_data_from_ebay_api(post_data["query"])
     poshmark_data = get_data_from_poshmark_api(post_data["query"])
 
@@ -86,7 +90,7 @@ def search():
                 description=item["description"],
                 size=item["inventory"]["size_quantities"][0]["size_obj"]["display_with_size_system"],
                 price=item["price_amount"]["val"],
-                image=item["picture_url"],
+                image=item["picture_url"]
             )
             items.append(poshmarkItem)
 
@@ -105,7 +109,7 @@ def search():
         return "items posted successfully"  
     
     except:
-        raise ValueError("Image URL is not unique")  
+        return {"error":'dinnae work'}  
     
 # AUTHENTICATION ROUTES
 #user signup route
