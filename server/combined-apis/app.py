@@ -2,7 +2,7 @@ from flask import Flask, render_template, make_response, jsonify, request, sessi
 import requests
 # import pandas as pd
 from flask_migrate import Migrate
-from models import db, Item, User
+from models import db, Item, User, Wishlist
 # import os
 import requests
 from keys import RAPIDAPI_POSHMARK_AUTH_TOKEN, RAPIDAPI_EBAY_AUTH_TOKEN
