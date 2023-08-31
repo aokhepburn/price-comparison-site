@@ -17,7 +17,7 @@ export default function WishlistProducts({ setWishlist}){
     // )
 // })
 
-return (
+    return (
         <div className="wishlist-products-display">
         {wishlist.map((product) => {
             return (
@@ -29,4 +29,5 @@ return (
             )
         })}
         </div>
-    )}
+    )
+}

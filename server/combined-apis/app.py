@@ -1,11 +1,13 @@
-from flask import Flask, render_template, make_response, jsonify, request, session
+from flask import Flask, make_response, jsonify, request, session
 import requests
-# import pandas as pd
 from flask_migrate import Migrate
 from models import db, Item, User, Wishlist
 import os
 import requests
 from flask_bcrypt import Bcrypt
+from dotenv import load_dotenv 
+
+load_dotenv()
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DATABASE = os.environ.get(
@@ -67,9 +69,8 @@ def index():
 @app.post('/search')
 def search():
     Item.query.delete()
-    # rapidapi_key_ebay = os.getenv('EBAY_RAPIDAPI_KEY')  # Get the API key from environment variables
 
-    post_data = request.json
+    post_data = request.get_json()
     ebay_data = get_data_from_ebay_api(post_data["query"])
     poshmark_data = get_data_from_poshmark_api(post_data["query"])
 
@@ -86,7 +87,7 @@ def search():
                 description=item["description"],
                 size=item["inventory"]["size_quantities"][0]["size_obj"]["display_with_size_system"],
                 price=item["price_amount"]["val"],
-                image=item["picture_url"],
+                image=item["picture_url"]
             )
             items.append(poshmarkItem)
 
@@ -105,7 +106,7 @@ def search():
         return "items posted successfully"  
     
     except:
-        raise ValueError("Image URL is not unique")  
+        return {"error":'dinnae work'}  
     
 # AUTHENTICATION ROUTES
 #user signup route
@@ -160,7 +161,7 @@ def logout():
     return {"message": "Logged out"}, 200
 
 #accessing user's wishlist
-'''
+
 @app.get("/wishlist")
 def get_wishlist():
     user = User.query.filter(User.id == session['user_id']).first()
@@ -202,7 +203,6 @@ def add_to_wishlist():
         db.session.add(new_wishlist_item)
         db.session.commit()
         return Wishlist.to_dict(), 201
-'''
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
