@@ -9,6 +9,7 @@ import Products from "./Components/Pieces/Products";
 import FeaturedProduct from "./Components/Pieces/FeaturedProduct";
 import LoginPage from "./Components/Routes/LoginPage";
 import WishlistProducts from "./Components/Pieces/WishlistProducts";
+import Header from "./Components/Static/Header";
 
 // The main app page, pareant. landing page, idk // 
 
@@ -102,8 +103,10 @@ export default function App () {
 
     return ( 
         <div>
-            <Navbar searchInput={searchInput} handleSearch={handleSearch}/> 
-            <Products searchInput={searchInput} products={products} handleAddToWishlist={handleAddToWishlist} handleFeaturedProduct= {handleFeaturedProduct}/> 
+            <Header/>
+            <Outlet />
+            {/* <Navbar searchInput={searchInput} handleSearch={handleSearch}/>  */}
+            {/* <Products searchInput={searchInput} products={products} handleAddToWishlist={handleAddToWishlist} handleFeaturedProduct= {handleFeaturedProduct}/>  */}
             <FeaturedProduct featuredProduct={featuredProduct} handleAddToWishlist={handleAddToWishlist}/>
             <CreateAccountPage createAccount={createAccount}/> 
             <LoginPage attemptLogin={attemptLogin} /> 

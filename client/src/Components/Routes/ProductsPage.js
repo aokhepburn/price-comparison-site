@@ -9,7 +9,7 @@ export default function Shop () {
     return ( 
         <div>
             <h1>Products</h1>
-            <DisplayProduct/>
+            {/* <DisplayProduct/> */}
             {/* <Sidebar/> */}
         </div>
         );

@@ -11,47 +11,46 @@ import LoginPage from "./Components/Routes/LoginPage";
 import ProductsPage from "./Components/Routes/ProductsPage" ;
 import Wishlist from "./Components/Routes/Wishlist";
 import FeaturedProduct from "./Components/Routes/FeaturedProduct";
-
+import Products from "./Components/Pieces/Products";
+import App from './App';
 
 const router = createBrowserRouter([
   { 
     path: "/",
-    element: <Root/>,
+    element: <App/>,
     errorElement: <Error />,
-    children: [
-      {
-      path: "/",
-      index: true,
-      element: <Welcome/>,
-      },
-      {
-        path: "/products",
-        element: <ProductsPage/>,
-      },
-      {
-        path: "/wishlist",
-        element: <Wishlist/>
-      },
-      {
-        path: "/featuredproduct",
-        element: <FeaturedProduct/>,
-      },
-      {
-        path: "/signup",
-        element: <CreateAccountPage/>
-      },
-      {
-        path: "/login",
-        element: <LoginPage/>
-      },
-    ]
+  },
+  {
+  path: "/",
+  index: true,
+  element: <Welcome/>,
+  },
+  {
+    path: "/products",
+    element: <Products/>,
+  },
+  {
+    path: "/wishlist",
+    element: <Wishlist/>
+  },
+  {
+    path: "/featuredproduct",
+    element: <FeaturedProduct/>,
+  },
+  {
+    path: "/signup",
+    element: <CreateAccountPage/>
+  },
+  {
+    path: "/login",
+    element: <LoginPage/>
   },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    < RouterProvider router={router}/>
+    <RouterProvider router={router}/>
   </React.StrictMode>
 );
 
@@ -60,3 +59,39 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+
+// const router = createBrowserRouter([
+//   { 
+//     path: "/",
+//     element: <App/>,
+//     errorElement: <Error />,
+//     children: [
+//       {
+//       path: "/",
+//       index: true,
+//       element: <Welcome/>,
+//       },
+//       {
+//         path: "/products",
+//         element: <Products/>,
+//       },
+//       {
+//         path: "/wishlist",
+//         element: <Wishlist/>
+//       },
+//       {
+//         path: "/featuredproduct",
+//         element: <FeaturedProduct/>,
+//       },
+//       {
+//         path: "/signup",
+//         element: <CreateAccountPage/>
+//       },
+//       {
+//         path: "/login",
+//         element: <LoginPage/>
+//       },
+//     ]
+//   },
+// ]);
