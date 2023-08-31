@@ -1,9 +1,8 @@
 import React from "react";
 
-export default function DisplayWishlistProducts({wishlist, setWishlist}){
+export default function WishlistProducts({wishlist, setWishlist}){
     
-    
-const wishlist = products.filter((product) => {  
+const filteredWishlist = wishlist.filter((product) => {  
     return (
         product.name.toLowerCase().includes(searchInput.toLowerCase()) ||
         product.title.toLowerCase().includes(searchInput.toLowerCase()) ||
@@ -15,15 +14,13 @@ const wishlist = products.filter((product) => {
 
 return (
         <div className="wishlist-products-display">
-        {wishlist.map((product) => {
+        {filteredWishlist.map((product) => {
             return (
                 <div>
                     key={product.id}
                     product={product}
-                    image={product.image}
-                    title={product.title}
+                    image={product.imageSrc}
                     brand={product.brand}
-                    description={product.description}
                     name={product.name}
                 </div>
             )
