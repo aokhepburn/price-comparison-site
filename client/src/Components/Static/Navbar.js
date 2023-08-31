@@ -27,9 +27,25 @@ export default function Navbar ({searchInput, setSearchInput, handleSearch}) {
     );
 };
 const NavContainer = styled.nav `
+    /* justify-content: space-between;
+    align-items: center;
+    height: 80px; */
+
+    background-color: ;
+    color: white;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     height: 80px;
+    padding: 0 20px;
+
+    .nav-center {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    }
+
+
     .logo {
         display: flex; 
         margin-top: 0px; 
@@ -50,4 +66,8 @@ const NavContainer = styled.nav `
         align-items: center;
         justify-content: center;  
     }
+
+
+
+    
     `; 

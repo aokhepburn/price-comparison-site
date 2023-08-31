@@ -20,7 +20,7 @@ export default function App () {
     function handleSearch(userentry){
         setSearchInput(userentry)}
         fetch('/items', {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Accepts': 'application/json'
@@ -29,6 +29,8 @@ export default function App () {
         }) 
         .then(response => response.json())
         .then(data => setProductsList(data))};
+
+
 
     function handleFeaturedProduct(clickedProduct) {
         setFeaturedProduct(clickedProduct)
@@ -94,7 +96,7 @@ export default function App () {
     return ( 
         <div>
             <Navbar searchInput={searchInput} handleSearch={handleSearch}/> 
-            <DisplayProducts searchInput={searchInput} products={products} handleAddToWishlist={handleAddToWishlist} handleFeaturedProduct= {handleFeaturedProduct}/> 
+            <Products searchInput={searchInput} products={products} handleAddToWishlist={handleAddToWishlist} handleFeaturedProduct= {handleFeaturedProduct}/> 
             <FeaturedProduct featuredProduct={featuredProduct} handleAddToWishlist={handleAddToWishlist}/>
             <CreateAccountPage createAccount={createAccount}/> 
             <LoginPage attemptLogin={attemptLogin} /> 

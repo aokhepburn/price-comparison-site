@@ -21,6 +21,7 @@ requests = "*"
 pandas = "*"
 python-dotenv = "*"
 Flask-Login = "*"
+flask-bcrypt="*"
 
 [dev-packages]
 

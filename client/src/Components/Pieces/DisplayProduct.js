@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 // this is the individal card that the product will be displayed in 
 
-export default function ProductListCard ({key, product, image, title, brand, price, description, handleAddToWishlist, handleFeaturedProduct}) {
+export default function DisplayProducts ({key, product, image, title, brand, price, description, handleAddToWishlist, handleFeaturedProduct}) {
     return (
         <div>
             <li className="product-card">
