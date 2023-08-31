@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from 'react-router-dom'
-import DisplayProducts from "../Pieces/Products";
+import DisplayProduct from "../Pieces/DisplayProduct";
 // import Sidebar from '../Components/Sidebar';
 
 

@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from "react";
 import {Outlet, Link} from 'react-router-dom'
 import Navbar from './Components/Static/Navbar';
-import CreateAccountPage from './Routes/CreateAccountPage';
+import CreateAccountPage from './Components/Routes/CreateAccountPage';
 import { Routes, Route } from 'react-router-dom';
-import DisplayProducts from "./Components/Pieces/DisplayProducts";
+import DisplayProduct from "./Components/Pieces/DisplayProduct";
 import DisplayWishlistProducts from "./Components/Pieces/WishlistProducts";
 import Products from "./Components/Pieces/Products";
 import FeaturedProduct from "./Components/Pieces/FeaturedProduct";
-
+import LoginPage from "./Components/Routes/LoginPage";
+import WishlistProducts from "./Components/Pieces/WishlistProducts";
 
 // The main app page, pareant. landing page, idk // 
 
@@ -52,7 +53,8 @@ export default function App () {
         //     body: JSON.stringify(productToAdd),
         // });
 
-            setWishlist([...wishlist, productToAdd])
+            // setWishlist([...wishlist, productToAdd])
+            console.log(productToAdd)
         }
 
 //LOGING + SIGNUP 

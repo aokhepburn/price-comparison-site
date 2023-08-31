@@ -7,11 +7,11 @@ export default function DisplayProducts ({key, product, image, name, brand, pric
 
     function handleClick (e) {
         // console.log(handleAddToWishlist)
-        console.log(product.name)
+        // console.log(product.name)
         handleAddToWishlist(product)
     }
 
-    console.log(handleAddToWishlist)
+    // console.log(handleAddToWishlist)
 
     return (
         <div>
@@ -23,7 +23,7 @@ export default function DisplayProducts ({key, product, image, name, brand, pric
                 <Link to='/featuredproduct'> 
                         <img 
                         onClick={() => handleFeaturedProduct(product)} // when you click on the image, it will take you to '/featuredproduct' => will only display the product you clicked 
-                        src={product.image} alt={product.name} />
+                        src={image} alt={name} />
                     </Link> */
                 </div>
                 <div className="details">

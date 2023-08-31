@@ -41,7 +41,7 @@ export default function DisplayProducts({searchInput, products, handleAddToWishl
         },
     ]
 
-    console.log(handleAddToWishlist)
+    console.log(productsData)
 
     //the filtered products will render like this below, I am passing down the props to the productcard 
     return (
@@ -60,8 +60,10 @@ export default function DisplayProducts({searchInput, products, handleAddToWishl
                 </DisplayProduct>
                 ))} */}
 
-                {productsData.map(product => (
-                    <DisplayProduct
+                {productsData.map(product => { 
+                    console.log(product)
+            
+                    return (<DisplayProduct
                         key={product.id}
                         product={product}
                         image={product.imageSrc}
@@ -70,11 +72,13 @@ export default function DisplayProducts({searchInput, products, handleAddToWishl
                         handleAddToWishlist={handleAddToWishlist}
                         handleFeaturedProduct={handleFeaturedProduct}
                         productsData={productsData}
-                    />
-                ))}
+                    />)
+                })}
                 <p>display products page</p>
             </div>
-            )}
+            )
+
+            }
 
         //filtering through the database in backend 
     // const filteredProducts = products.filter(product => {  

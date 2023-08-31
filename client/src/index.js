@@ -6,7 +6,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom"
 import Root from "./Components/Root";
 import Welcome from "./Components/Routes/Welcome";
 import Error from "./Components/Error";
-import SignUpPage from "./Components/Routes/CreateAccountPage";
+import CreateAccountPage from "./Components/Routes/CreateAccountPage";
 import LoginPage from "./Components/Routes/LoginPage";
 import ProductsPage from "./Components/Routes/ProductsPage" ;
 import Wishlist from "./Components/Routes/Wishlist";
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/signup",
-        element: <SignUpPage/>
+        element: <CreateAccountPage/>
       },
       {
         path: "/login",
