@@ -12,6 +12,9 @@ export default function Sidebar () {
     )
 };
 
+// MIGHT NOT INCLUDE THIS //
+
+
 const SideBarContainer = styled.div`
     .sidebar{
         height: 600px;

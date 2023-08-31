@@ -8,8 +8,9 @@ import Welcome from "./Components/Routes/Welcome";
 import Error from "./Components/Error";
 import SignUpPage from "./Components/Routes/CreateAccountPage";
 import LoginPage from "./Components/Routes/LoginPage";
-import Products from "./Components/Routes/Products" ;
+import ProductsPage from "./Components/Routes/ProductsPage" ;
 import Wishlist from "./Components/Routes/Wishlist";
+import FeaturedProduct from "./Components/Routes/FeaturedProduct";
 
 
 const router = createBrowserRouter([
@@ -22,14 +23,22 @@ const router = createBrowserRouter([
       path: "/",
       index: true,
       element: <Welcome/>,
+      // loader: async () =>
+      // fetch("http://localhost:3000/clothingItems")
+      // .then((response) => response.json())
+      // .then((data) => console.log(data))
       },
       {
         path: "/products",
-        element: <Products/>,
+        element: <ProductsPage/>,
       },
       {
         path: "/wishlist",
         element: <Wishlist/>
+      },
+      {
+        path: "/featuredproduct",
+        element: <FeaturedProduct/>,
       },
       {
         path: "/signup",

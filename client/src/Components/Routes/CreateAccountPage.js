@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Link} from 'react-router-dom'
-import SignUpForm from '../Pieces/CreateAccountForm';
+import CreateAccountForm from '../Pieces/createAccountForm';
 
 export default function SignUpPage ({createAccount}) {
 const [username , setUsername] = useState("")
@@ -12,6 +12,6 @@ const handleChangePassword = e => setPassword(e.target.value)
 
 return (
     <div className="signin-container">
-        <SignUpForm handleChangeUsername = {handleChangeUsername} handleChangePassword={handleChangePassword} username={username} password={password} createAccount={createAccount}/>
+        <CreateAccountForm handleChangeUsername = {handleChangeUsername} handleChangePassword={handleChangePassword} username={username} password={password} createAccount={createAccount}/>
     </div>
 )};
