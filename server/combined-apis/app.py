@@ -5,12 +5,11 @@ from flask_migrate import Migrate
 from models import db, Item, User, Wishlist
 import os
 import requests
-from keys import RAPIDAPI_POSHMARK_AUTH_TOKEN, RAPIDAPI_EBAY_AUTH_TOKEN, SECRET_KEY
 from flask_bcrypt import Bcrypt
 
-# BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-# DATABASE = os.environ.get(
-#     "DB_URI", f"sqlite:///{os.path.join(BASE_DIR, 'app.db')}")
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+DATABASE = os.environ.get(
+    "DB_URI", f"sqlite:///{os.path.join(BASE_DIR, 'app.db')}")
 
 
 app = Flask(__name__)
