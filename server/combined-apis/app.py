@@ -1,6 +1,5 @@
-from flask import Flask, render_template, make_response, jsonify, request, session
+from flask import Flask, make_response, jsonify, request, session
 import requests
-# import pandas as pd
 from flask_migrate import Migrate
 from models import db, Item, User, Wishlist
 import os
@@ -15,7 +14,7 @@ DATABASE = os.environ.get(
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///app.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.secret_key = SECRET_KEY
+app.secret_key = os.getenv('SECRET_KEY')
 app.json.compact = False
 
 migrate = Migrate(app, db)
@@ -161,7 +160,7 @@ def logout():
     return {"message": "Logged out"}, 200
 
 #accessing user's wishlist
-'''
+
 @app.get("/wishlist")
 def get_wishlist():
     user = User.query.filter(User.id == session['user_id']).first()
@@ -203,7 +202,6 @@ def add_to_wishlist():
         db.session.add(new_wishlist_item)
         db.session.commit()
         return Wishlist.to_dict(), 201
-'''
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
