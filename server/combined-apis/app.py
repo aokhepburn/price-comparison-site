@@ -77,6 +77,8 @@ def search():
 
     items = []
 
+# {"query": data}
+
     try:
 
         for item in poshmark_data["data"]:
