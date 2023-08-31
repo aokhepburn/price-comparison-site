@@ -1,7 +1,7 @@
 from flask import Flask, make_response, jsonify, request, session
 import requests
 from flask_migrate import Migrate
-from models import db, Item, User, Wishlist
+from models import db, Item, User, Wishlist, Item_Wishlist_Association
 import os
 import requests
 from flask_bcrypt import Bcrypt
@@ -160,48 +160,64 @@ def logout():
     session.pop('user_id')
     return {"message": "Logged out"}, 200
 
-#accessing user's wishlist
-@app.get("/wishlist")
-def get_wishlist():
-    user = User.query.filter(User.id == session['user_id']).first()
-    if not user:
-        return { "error": "You don't have access to this page" }, 401
-    wishlist_items = user.wishlist_items
+#WISHLIST ROUTES
 
-    wishlist_data = []
-    for item in wishlist_items:
-        wishlist_data.append({
-            "id": item.id,
-            "title": item.title,
-            "brand": item.brand,
-            "price": item.price,
-            "image": item.image,
-            "url": item.url,
-            "description": item.description
-        })
+# #accessing user's wishlist
+# @app.get("/wishlist")
+# def get_wishlist():
+#     user = User.query.filter(User.id == session['user_id']).first()
+#     if not user:
+#         return { "error": "You don't have access to this page" }, 401
+#     wishlist_items = user.wishlist_items
 
-    return jsonify(wishlist_data)
+#     wishlist_data = []
+#     #change to to_dict
+#     for item in wishlist_items:
+#         wishlist_data.append({
+#             "id": item.id,
+#             "title": item.title,
+#             "brand": item.brand,
+#             "price": item.price,
+#             "image": item.image,
+#             "url": item.url,
+#             "description": item.description
+#         })
 
-@app.post("/wishlist")
-def add_to_wishlist():
-    item_data = request.json
-    user = User.query.filter(User.id == session['user_id']).first()
-    if not user:
-        return { "error": "You don't have access to this page" }, 401
+#     return jsonify(wishlist_data)
+
+# @app.post("/wishlist")
+# def add_wishlist():
+#     #for actual set front end
+#     # post_data = request.json
+#     # new_wishlist = Wishlist(user_id=session['user_id'])
     
-    item = Item.query.get(item_data["id"])
-    #if above doesn't work replace with Item.query.filter(Item.id == item_data["id"]).first()
+#     #for testing back end
+#     post_data = request.get_json()
+#     new_wishlist = Wishlist(user_id=post_data["user_id"])
+#     db.session.add(new_wishlist)
+#     db.session.commit()
+#     return make_response(jsonify(Wishlist.to_dict()), 201)
 
-    if not item:
-        return {"error" : "Item not found"}, 401
+# # @app.post("/wishlist")
+# # def add_to_wishlist():
+# #     item_data = request.json
+# #     user = User.query.filter(User.id == session['user_id']).first()
+# #     if not user:
+# #         return { "error": "You don't have access to this page" }, 401
+    
+# #     item = Item.query.get(item_data["id"])
+# #     #if above doesn't work replace with Item.query.filter(Item.id == item_data["id"]).first()
 
-    if Wishlist.query.filter(Wishlist.user_id==user.id, Wishlist.item_id==item.id).first():
-        return {"error": "Item already in your wishlist"}, 401
-    else:
-        new_wishlist_item = Wishlist(user_id=user.id, item_id=item.id)
-        db.session.add(new_wishlist_item)
-        db.session.commit()
-        return Wishlist.to_dict(), 201
+# #     if not item:
+# #         return {"error" : "Item not found"}, 401
 
-if __name__ == '__main__':
-    app.run(port=5555, debug=True)
+# #     if Item_Wishlist_Association.query.filter(Item_Wishlist_Association.user_id==user.id, Wishlist.item_id==item.id).first():
+# #         return {"error": "Item already in your wishlist"}, 401
+# #     else:
+# #         new_wishlist_item = Wishlist(user_id=user.id, item_id=item.id)
+# #         db.session.add(new_wishlist_item)
+# #         db.session.commit()
+# #         return Wishlist.to_dict(), 201
+
+# if __name__ == '__main__':
+#     app.run(port=5555, debug=True)
