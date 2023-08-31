@@ -6,9 +6,8 @@ import App from "../App"
 export default function Root() {
     return (
         <div>
-            <Header />
-            <Outlet />
-            <App />{
+            <Header/>
+            <App/>{
             /* <Footer/> */}
 
         </div>
