@@ -1,0 +1,39 @@
+/* FooterNavbar.css */
+
+.footer-nav {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #333;
+  padding: 15px 0; /* Increased padding for more white space */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-nav-list {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-nav-item {
+  margin: 0;
+  padding: 0;
+}
+
+.footer-nav-item a {
+  color: white;
+  text-decoration: none;
+  padding: 10px; /* Increased padding for more space around text */
+  border-radius: 5px;
+  font-size: 16px; /* Adjust font size */
+  transition: background-color 0.3s ease;
+  display: flex; /* Make the items flex containers */
+  align-items: center; /* Vertically center text within each link */
+}
+
+.footer-nav-item a:hover {
+  background-color: #555;
+}

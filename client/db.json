@@ -1,0 +1,64 @@
+{
+    "clothingItems": [
+    {
+        "id": 1,
+        "title": "Men's T-Shirt",
+        "description": "A comfortable and stylish t-shirt for men.",
+        "price": 19.99
+    },
+    {
+        "id": 2,
+        "title": "Women's Blouse",
+        "description": "A trendy blouse for women.",
+        "price": 29.99
+    },
+    {
+        "id": 3,
+        "title": "Jeans",
+        "description": "Classic blue jeans for everyday wear.",
+        "price": 39.99
+    },
+    {
+        "id": 4,
+        "title": "Hooded Sweatshirt",
+        "description": "A warm and cozy hoodie for chilly days.",
+        "price": 49.99
+    },
+    {
+        "id": 5,
+        "title": "Sneakers",
+        "description": "Stylish sneakers for casual outings.",
+        "price": 59.99
+      },
+      {
+        "id": 6,
+        "title": "Summer Dress",
+        "description": "A floral summer dress for a day at the beach.",
+        "price": 39.99
+      },
+      {
+        "id": 7,
+        "title": "Leather Jacket",
+        "description": "A classic leather jacket for a rugged look.",
+        "price": 79.99
+      },
+      {
+        "id": 8,
+        "title": "Formal Suit",
+        "description": "A sharp and sophisticated suit for formal events.",
+        "price": 129.99
+      },
+      {
+        "id": 9,
+        "title": "Running Shoes",
+        "description": "Lightweight running shoes for athletes.",
+        "price": 69.99
+      },
+      {
+        "id": 10,
+        "title": "Winter Coat",
+        "description": "A warm winter coat for cold weather.",
+        "price": 89.99
+      }
+    ]
+  }
