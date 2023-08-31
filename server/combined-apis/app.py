@@ -3,7 +3,7 @@ import requests
 # import pandas as pd
 from flask_migrate import Migrate
 from models import db, Item, User, Wishlist
-# import os
+import os
 import requests
 from keys import RAPIDAPI_POSHMARK_AUTH_TOKEN, RAPIDAPI_EBAY_AUTH_TOKEN, SECRET_KEY
 from flask_bcrypt import Bcrypt
@@ -25,11 +25,11 @@ db.init_app(app)
 
 #function for retrieving ebay api data
 def get_data_from_ebay_api(userInput):
-    # rapidapi_key = os.getenv('EBAY_RAPIDAPI_KEY')
+    rapidapi_key_ebay = os.getenv('EBAY_RAPIDAPI_KEY')
     url = f"https://ebay-search-result.p.rapidapi.com/search/{userInput.replace(' ', '%20')}"
 
     headers = {
-        "X-RapidAPI-Key": RAPIDAPI_EBAY_AUTH_TOKEN,  # Use the API key variable
+        "X-RapidAPI-Key": rapidapi_key_ebay,  # Use the API key variable
         "X-RapidAPI-Host": "ebay-search-result.p.rapidapi.com"
     }
     ebay_response = requests.get(url, headers=headers)
@@ -42,13 +42,13 @@ def get_data_from_ebay_api(userInput):
 
 #function for retrieving poshmark api data
 def get_data_from_poshmark_api(userInput):
-    # rapidapi_key = os.getenv('POSHMARK_RAPIDAPI_KEY')
+    rapidapi_key_poshmark = os.getenv('POSHMARK_RAPIDAPI_KEY')
 
     url = "https://poshmark.p.rapidapi.com/search"
     querystring = { "query":userInput,"domain":"com"}
     headers = {
         "Accept-Encoding": "gzip, deflate",
-        "X-RapidAPI-Key": RAPIDAPI_POSHMARK_AUTH_TOKEN,
+        "X-RapidAPI-Key": rapidapi_key_poshmark,
         "X-RapidAPI-Host": "poshmark.p.rapidapi.com"
     }
     poshmark_response = requests.get(url, headers=headers, params=querystring)
