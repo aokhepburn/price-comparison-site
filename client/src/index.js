@@ -23,10 +23,6 @@ const router = createBrowserRouter([
       path: "/",
       index: true,
       element: <Welcome/>,
-      // loader: async () =>
-      // fetch("http://localhost:3000/clothingItems")
-      // .then((response) => response.json())
-      // .then((data) => console.log(data))
       },
       {
         path: "/products",
@@ -50,37 +46,7 @@ const router = createBrowserRouter([
       },
     ]
   },
- ]);
-
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <App />,
-//     errorElement: <Error/>
-//   },
-//   {
-//     path: "/home",
-//     element: <Home />,
-//     index: true,
-//   },
-//   {
-//     path: "/products",
-//     element: <Shop />,
-//   },
-//   {
-//     path: "/wishlist",
-//     element: <Wishlist />,
-//   },
-//   {
-//     path: "/signup",
-//     element: <SignUpPage />,
-//   },
-//   {
-//     path: "/login",
-//     element: <LoginPage />,
-//   },
-// ]);
-
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -89,9 +55,6 @@ root.render(
   </React.StrictMode>
 );
 
-// const Root = () => {
-//   return <RouterProvider router={router}/>
-// }
 // export default App;
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

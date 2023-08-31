@@ -1,10 +1,10 @@
-
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
-#from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import MetaData
 from sqlalchemy.orm import validates
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy_serializer import SerializerMixin
+import string
 
 
 metadata = MetaData(
@@ -14,7 +14,9 @@ metadata = MetaData(
 )
 db = SQLAlchemy(metadata=metadata)
 
-#db = SQLAlchemy()
+
+# db = SQLAlchemy()
+
 
 class User(db.Model):
     __tablename__ = 'user'

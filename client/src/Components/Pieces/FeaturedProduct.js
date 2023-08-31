@@ -1,17 +1,24 @@
 import React from "react";
+import DisplayFeaturedProduct from "./DisplayFeaturedProduct";
 
 export default function FeaturedProduct ({featuredProduct, handleAddToWishlist}) {
 
     return ( 
         <div>
+            {
+
+            }
+            <DisplayFeaturedProduct>
             <div className="featured-product">
-                <h1>{featuredProduct.title}</h1>
-                <img src={featuredProduct.image} alt={featuredProduct.title} />
-                <h2>{featuredProduct.brand}</h2>
-                <h3>{featuredProduct.description }</h3>
-                <h4>${featuredProduct.price}.00</h4>
-                <button onClick={() => handleAddToWishlist(featuredProduct)}>Add to wishlist</button>
+                key={featuredProduct.id}
+                image={featuredProduct.imageSrc}
+                brand={featuredProduct.brand}
+                name={featuredProduct.name}
+                handleAddToWishlist={handleAddToWishlist}
+                featuredProduct={featuredProduct}
             </div>
+            <p>featured products page</p>
+            </DisplayFeaturedProduct>
         </div>
     );
 }
