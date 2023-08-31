@@ -6,17 +6,19 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom"
 import Root from "./Components/Root";
 import Welcome from "./Components/Routes/Welcome";
 import Error from "./Components/Error";
-import SignUpPage from "./Components/Routes/CreateAccountPage";
+import CreateAccountPage from "./Components/Routes/CreateAccountPage";
 import LoginPage from "./Components/Routes/LoginPage";
 import ProductsPage from "./Components/Routes/ProductsPage" ;
 import Wishlist from "./Components/Routes/Wishlist";
 import FeaturedProduct from "./Components/Routes/FeaturedProduct";
-
+import Products from "./Components/Pieces/Products";
+import App from './App';
+import WishlistProducts from './Components/Pieces/WishlistProducts';
 
 const router = createBrowserRouter([
   { 
     path: "/",
-    element: <Root/>,
+    element: <App/>,
     errorElement: <Error />,
     children: [
       {
@@ -26,32 +28,32 @@ const router = createBrowserRouter([
       },
       {
         path: "/products",
-        element: <ProductsPage/>,
+        element: <Products/>,
       },
       {
         path: "/wishlist",
-        element: <Wishlist/>
+        element: <WishlistProducts/>
       },
-      {
-        path: "/featuredproduct",
-        element: <FeaturedProduct/>,
-      },
+      // {
+      //   path: "/featuredproduct",
+      //   element: <FeaturedProduct/>,
+      // },
       {
         path: "/signup",
-        element: <SignUpPage/>
+        element: <CreateAccountPage/>
       },
       {
         path: "/login",
         element: <LoginPage/>
       },
     ]
-  },
+  }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    < RouterProvider router={router}/>
+    <RouterProvider router={router}/>
   </React.StrictMode>
 );
 
@@ -60,3 +62,39 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+
+// const router = createBrowserRouter([
+//   { 
+//     path: "/",
+//     element: <App/>,
+//     errorElement: <Error />,
+//     children: [
+//       {
+//       path: "/",
+//       index: true,
+//       element: <Welcome/>,
+//       },
+//       {
+//         path: "/products",
+//         element: <Products/>,
+//       },
+//       {
+//         path: "/wishlist",
+//         element: <Wishlist/>
+//       },
+//       {
+//         path: "/featuredproduct",
+//         element: <FeaturedProduct/>,
+//       },
+//       {
+//         path: "/signup",
+//         element: <CreateAccountPage/>
+//       },
+//       {
+//         path: "/login",
+//         element: <LoginPage/>
+//       },
+//     ]
+//   },
+// ]);
