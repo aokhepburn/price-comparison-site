@@ -1,8 +1,22 @@
-
-from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import MetaData
+from sqlalchemy.orm import validates
+from sqlalchemy.ext.associationproxy import association_proxy
+from sqlalchemy_serializer import SerializerMixin
+import string
 
-db = SQLAlchemy()
+
+metadata = MetaData(
+    naming_convention={
+        "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
+    }
+)
+db = SQLAlchemy(metadata=metadata)
+
+
+# db = SQLAlchemy()
+
 
 class User(db.Model):
     __tablename__ = 'user'
