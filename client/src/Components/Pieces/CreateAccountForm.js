@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./CreateAccountForm.css"; // Import the CSS file
+import "./CSS/CreateAccountForm.css"; // Import the CSS file
 
 export default function CreateAccountForm({
     createAccount,
