@@ -9,28 +9,37 @@
     <a href=""><img src="https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white" /></a>
 </p>
 
-<h1 align="center"><b>Thrifty - eBay & Poshmark API Integration App</b></h1>
+<h1 align="center"><b>Thrifty</b></h1>
 <h4 align="center">A sophisticated shopping app that integrates the eBay and Poshmark APIs, offering users a seamless platform to search, explore, and manage their wishlist.</h4>
 
 <p align="center">
-    <img src="path_to_logo.png" alt="Project Logo" width=60% height=60%/>
+    <img src="" alt="Project Logo" width=60% height=60%/>
 </p>
 
 ## Table of Contents
 
-- [Project Overview](#project-overview)
-- [Features](#features)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
+- [Introduction](#Introduction)
+- [Technical Requirements](#technical_requirements)
+- [Project Structure](#project-structure)
+- [Key Functionalities](#key-functionalities)
+- [Project Features](#project-features)
+- [Getting Started](#getting-started)
 - [Usage](#usage)
+- [Dependencies](#dependencies)
 - [Contributing](#contributing)
 - [License](#license)
 
-## Project Overview
+## Introduction
 
-Thrifty is a modern web application built to enhance the shopping experience by combining the power of eBay and Poshmark APIs. Users can effortlessly search for items across both platforms, explore detailed results, and conveniently manage their personal wishlist.
+Thrifty is a modern web application built to enhance the shopping experience by combining the power of eBay and Poshmark Marketplaces. Users can effortlessly search for items across both platforms, explore detailed results, and conveniently manage their personal wishlist.
 
-## Features
+## Technical Requirements
+
+## Project Structure
+
+## Key Functionalities
+
+## Project Features
 
 - **User Authentication:** Secure user signup and login functionality.
 - **Session Management:** Manage user sessions for a seamless experience.
@@ -39,19 +48,12 @@ Thrifty is a modern web application built to enhance the shopping experience by 
 - **Personal Wishlist:** Allow users to curate and manage their wishlist.
 - **User Logout:** Provide a smooth logout mechanism.
 
-## Prerequisites
+## Getting Started
 
-Before starting with Thrifty, ensure that you have the following:
+## Usage
 
-- **Python (3.x):** The core language used for the project.
-- **pip:** The Python package manager.
-- **Virtual Environment:** For isolated development.
+## Dependencies
 
-## Installation
+## Contributing
 
-1. **Clone the Repository:**
-
-   ```bash
-   git clone https://github.com/your-username/Thrifty.git
-   cd Thrifty
-   ```
+## License
