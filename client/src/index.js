@@ -13,38 +13,41 @@ import Wishlist from "./Components/Routes/Wishlist";
 import FeaturedProduct from "./Components/Routes/FeaturedProduct";
 import Products from "./Components/Pieces/Products";
 import App from './App';
+import WishlistProducts from './Components/Pieces/WishlistProducts';
 
 const router = createBrowserRouter([
   { 
     path: "/",
     element: <App/>,
     errorElement: <Error />,
-  },
-  {
-  path: "/",
-  index: true,
-  element: <Welcome/>,
-  },
-  {
-    path: "/products",
-    element: <Products/>,
-  },
-  {
-    path: "/wishlist",
-    element: <Wishlist/>
-  },
-  {
-    path: "/featuredproduct",
-    element: <FeaturedProduct/>,
-  },
-  {
-    path: "/signup",
-    element: <CreateAccountPage/>
-  },
-  {
-    path: "/login",
-    element: <LoginPage/>
-  },
+    children: [
+      {
+      path: "/",
+      index: true,
+      element: <Welcome/>,
+      },
+      {
+        path: "/products",
+        element: <Products/>,
+      },
+      {
+        path: "/wishlist",
+        element: <WishlistProducts/>
+      },
+      // {
+      //   path: "/featuredproduct",
+      //   element: <FeaturedProduct/>,
+      // },
+      {
+        path: "/signup",
+        element: <CreateAccountPage/>
+      },
+      {
+        path: "/login",
+        element: <LoginPage/>
+      },
+    ]
+  }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

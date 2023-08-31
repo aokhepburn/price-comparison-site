@@ -3,15 +3,16 @@ import {Link} from 'react-router-dom';
 
 // this is the individal card that the product will be displayed in 
 
-export default function DisplayProducts ({key, product, image, name, brand, price, description, handleAddToWishlist, handleFeaturedProduct}) {
+export default function DisplayProducts ({key, product, image, name, brand, description, handleAddToWishlist, handleFeaturedProduct}) {
 
     function handleClick (e) {
-        // console.log(handleAddToWishlist)
-        // console.log(product.name)
         handleAddToWishlist(product)
     }
 
-    // console.log(handleAddToWishlist)
+    function handleClickedProduct (e) {
+        handleFeaturedProduct(product)
+        
+    }
 
     return (
         <div>
@@ -22,7 +23,7 @@ export default function DisplayProducts ({key, product, image, name, brand, pric
                 <div className="image">
                 <Link to='/featuredproduct'> 
                         <img 
-                        onClick={() => handleFeaturedProduct(product)} // when you click on the image, it will take you to '/featuredproduct' => will only display the product you clicked 
+                        onClick={(e) => handleClickedProduct(e)} // when you click on the image, it will take you to '/featuredproduct' => will only display the product you clicked 
                         src={image} alt={name} />
                     </Link> */
                 </div>

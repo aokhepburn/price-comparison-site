@@ -1,11 +1,16 @@
 import React, {useState, useEffect} from "react";
-import {Link} from 'react-router-dom';
+import {Link, useOutletContext} from 'react-router-dom';
 import DisplayProduct from './DisplayProduct'
+
 
 // Displays all of the products that are searched //
 
-export default function DisplayProducts({searchInput, products, handleAddToWishlist, handleFeaturedProduct}){
+export default function DisplayProducts(){
+    const [handleAddToWishlist, handleFeaturedProduct, wishlist] = useOutletContext()
     
+    // console.log (wishlist)
+    // console.log (handleAddToWishlist)
+
     const productsData = [
         {
             id: 2,
@@ -41,7 +46,7 @@ export default function DisplayProducts({searchInput, products, handleAddToWishl
         },
     ]
 
-    console.log(productsData)
+    // console.log(productsData)
 
     //the filtered products will render like this below, I am passing down the props to the productcard 
     return (
@@ -61,8 +66,6 @@ export default function DisplayProducts({searchInput, products, handleAddToWishl
                 ))} */}
 
                 {productsData.map(product => { 
-                    console.log(product)
-            
                     return (<DisplayProduct
                         key={product.id}
                         product={product}

@@ -54,8 +54,9 @@ export default function App () {
         //     body: JSON.stringify(productToAdd),
         // });
 
-        setWishlist([...wishlist, productToAdd])
-    }
+            // setWishlist([...wishlist, productToAdd])
+            console.log(productToAdd)
+        }
 
 //LOGING + SIGNUP 
     useEffect(() => {
@@ -98,31 +99,18 @@ export default function App () {
             }
         })
     }
-    // console.log(wishlist)
-
-    const random = "constant"
+    console.log(handleAddToWishlist)
 
     return ( 
         <div>
-            <Header />
-            <Outlet context={[ 
-                            handleAddToWishlist,
-                            handleFeaturedProduct,
-                            wishlist
-                        ]}
-                            // searchInput,  
-                            // handleFeaturedProduct ]}
-
-
-            
-            
-            />
+            <Header/>
+            <Outlet />
             {/* <Navbar searchInput={searchInput} handleSearch={handleSearch}/>  */}
             {/* <Products searchInput={searchInput} products={products} handleAddToWishlist={handleAddToWishlist} handleFeaturedProduct= {handleFeaturedProduct}/>  */}
-            {/* <FeaturedProduct featuredProduct={featuredProduct} handleAddToWishlist={handleAddToWishlist}/>
+            <FeaturedProduct featuredProduct={featuredProduct} handleAddToWishlist={handleAddToWishlist}/>
             <CreateAccountPage createAccount={createAccount}/> 
             <LoginPage attemptLogin={attemptLogin} /> 
-            <WishlistProducts setWishlist={setWishlist} wishlist={wishlist} /> */}
+            <WishlistProducts setWishlist={setWishlist} wishlist={wishlist} />
         </div>
         
         
