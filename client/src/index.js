@@ -8,8 +8,9 @@ import Welcome from "./Components/Routes/Welcome";
 import Error from "./Components/Error";
 import SignUpPage from "./Components/Routes/CreateAccountPage";
 import LoginPage from "./Components/Routes/LoginPage";
-import Products from "./Components/Routes/Products" ;
+import ProductsPage from "./Components/Routes/ProductsPage" ;
 import Wishlist from "./Components/Routes/Wishlist";
+import FeaturedProduct from "./Components/Routes/FeaturedProduct";
 
 
 const router = createBrowserRouter([
@@ -25,11 +26,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/products",
-        element: <Products/>,
+        element: <ProductsPage/>,
       },
       {
         path: "/wishlist",
         element: <Wishlist/>
+      },
+      {
+        path: "/featuredproduct",
+        element: <FeaturedProduct/>,
       },
       {
         path: "/signup",
@@ -41,37 +46,7 @@ const router = createBrowserRouter([
       },
     ]
   },
- ]);
-
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <App />,
-//     errorElement: <Error/>
-//   },
-//   {
-//     path: "/home",
-//     element: <Home />,
-//     index: true,
-//   },
-//   {
-//     path: "/products",
-//     element: <Shop />,
-//   },
-//   {
-//     path: "/wishlist",
-//     element: <Wishlist />,
-//   },
-//   {
-//     path: "/signup",
-//     element: <SignUpPage />,
-//   },
-//   {
-//     path: "/login",
-//     element: <LoginPage />,
-//   },
-// ]);
-
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -80,9 +55,6 @@ root.render(
   </React.StrictMode>
 );
 
-// const Root = () => {
-//   return <RouterProvider router={router}/>
-// }
 // export default App;
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

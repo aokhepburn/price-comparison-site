@@ -1,35 +1,42 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import "./CSS/LoginForm.css"; // Import the CSS file
 
-export default function LoginForm({handleChangeUsername, handleChangePassword, password, username, attemptLogin}) {
-
+export default function LoginForm({
+    handleChangeUsername,
+    handleChangePassword,
+    password,
+    username,
+    attemptLogin,
+}) {
     function handleSubmit(e) {
-        e.preventDefault()
-        attemptLogin({username, password})
-    }   
-    
+        e.preventDefault();
+        attemptLogin({ username, password });
+    }
+
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="form-container" onSubmit={handleSubmit}>
             <h1>Login to your account</h1>
-            <h2> Username</h2>
+            <div className="form-group">
+                <h2>Username</h2>
                 <input
-                type= "text"
-                onChange={handleChangeUsername}
-                placeholder="enter you username"
-                value={username}
-                
+                    className="input-field"
+                    type="text"
+                    onChange={handleChangeUsername}
+                    placeholder="Enter your username"
+                    value={username}
                 />
-                <br />
-            <h2>Password</h2>
+            </div>
+            <div className="form-group">
+                <h2>Password</h2>
                 <input
-                type= "text"
-                onChange={handleChangePassword}
-                placeholder="enter you password"
-                value={password}
+                    className="input-field"
+                    type="password"
+                    onChange={handleChangePassword}
+                    placeholder="Enter your password"
+                    value={password}
                 />
-                <br />
-                
-                <input type="submit"
-                value ='Signin'
-                />
+            </div>
+            <input className="submit-button" type="submit" value="Sign in" />
         </form>
-    )};
+    );
+}

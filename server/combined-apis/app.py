@@ -1,22 +1,22 @@
-from flask import Flask, render_template, make_response, jsonify, request, session
+from flask import Flask, make_response, jsonify, request, session
 import requests
-# import pandas as pd
 from flask_migrate import Migrate
-from models import db, Item, User
-# import os
+from models import db, Item, User, Wishlist
+import os
 import requests
-from keys import RAPIDAPI_POSHMARK_AUTH_TOKEN, RAPIDAPI_EBAY_AUTH_TOKEN, SECRET_KEY
 from flask_bcrypt import Bcrypt
+from dotenv import load_dotenv 
 
-# BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-# DATABASE = os.environ.get(
-#     "DB_URI", f"sqlite:///{os.path.join(BASE_DIR, 'app.db')}")
+load_dotenv()
 
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+DATABASE = os.environ.get(
+    "DB_URI", f"sqlite:///{os.path.join(BASE_DIR, 'app.db')}")
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///app.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.secret_key = SECRET_KEY
+app.secret_key = os.getenv('SECRET_KEY')
 app.json.compact = False
 
 migrate = Migrate(app, db)
@@ -25,11 +25,11 @@ db.init_app(app)
 
 #function for retrieving ebay api data
 def get_data_from_ebay_api(userInput):
-    # rapidapi_key = os.getenv('EBAY_RAPIDAPI_KEY')
+    rapidapi_key_ebay = os.getenv('EBAY_RAPIDAPI_KEY')
     url = f"https://ebay-search-result.p.rapidapi.com/search/{userInput.replace(' ', '%20')}"
 
     headers = {
-        "X-RapidAPI-Key": RAPIDAPI_EBAY_AUTH_TOKEN,  # Use the API key variable
+        "X-RapidAPI-Key": rapidapi_key_ebay,  # Use the API key variable
         "X-RapidAPI-Host": "ebay-search-result.p.rapidapi.com"
     }
     ebay_response = requests.get(url, headers=headers)
@@ -42,13 +42,13 @@ def get_data_from_ebay_api(userInput):
 
 #function for retrieving poshmark api data
 def get_data_from_poshmark_api(userInput):
-    # rapidapi_key = os.getenv('POSHMARK_RAPIDAPI_KEY')
+    rapidapi_key_poshmark = os.getenv('POSHMARK_RAPIDAPI_KEY')
 
     url = "https://poshmark.p.rapidapi.com/search"
     querystring = { "query":userInput,"domain":"com"}
     headers = {
         "Accept-Encoding": "gzip, deflate",
-        "X-RapidAPI-Key": RAPIDAPI_POSHMARK_AUTH_TOKEN,
+        "X-RapidAPI-Key": rapidapi_key_poshmark,
         "X-RapidAPI-Host": "poshmark.p.rapidapi.com"
     }
     poshmark_response = requests.get(url, headers=headers, params=querystring)
@@ -69,7 +69,6 @@ def index():
 @app.post('/search')
 def search():
     Item.query.delete()
-    # rapidapi_key_ebay = os.getenv('EBAY_RAPIDAPI_KEY')  # Get the API key from environment variables
 
     post_data = request.json
     ebay_data = get_data_from_ebay_api(post_data["query"])
@@ -88,7 +87,7 @@ def search():
                 description=item["description"],
                 size=item["inventory"]["size_quantities"][0]["size_obj"]["display_with_size_system"],
                 price=item["price_amount"]["val"],
-                image=item["picture_url"],
+                image=item["picture_url"]
             )
             items.append(poshmarkItem)
 
@@ -107,7 +106,7 @@ def search():
         return "items posted successfully"  
     
     except:
-        raise ValueError("Image URL is not unique")  
+        return {"error":'dinnae work'}  
     
 # AUTHENTICATION ROUTES
 #user signup route
@@ -162,7 +161,6 @@ def logout():
     return {"message": "Logged out"}, 200
 
 #accessing user's wishlist
-'''
 @app.get("/wishlist")
 def get_wishlist():
     user = User.query.filter(User.id == session['user_id']).first()
@@ -204,7 +202,6 @@ def add_to_wishlist():
         db.session.add(new_wishlist_item)
         db.session.commit()
         return Wishlist.to_dict(), 201
-'''
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

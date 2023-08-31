@@ -18,6 +18,10 @@ __pycache__
 Pipfile.lock
 */Pipfile.lock
 
+# Locked Version States for Node/React
+package-lock.json
+*/package-lock.json
+
 # Raw Dataset(s)
 data
 */data
