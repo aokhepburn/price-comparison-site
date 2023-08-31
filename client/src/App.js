@@ -16,28 +16,13 @@ import Header from "./Components/Static/Header";
 export default function App () {
 
     const [currentUser, setCurrentUser] = useState(null)
-    const [searchInput, setSearchInput] = useState("")
+    // const [searchInput, setSearchInput] = useState("")
     const [products, setProductsList] = useState([])
     const [wishlist, setWishlist] = useState([])
     const [featuredProduct, setFeaturedProduct] = useState ([])
 
-//PRODUCT SEARCH
-    function handleSearch(userentry){
-        setSearchInput(userentry)
-
-        fetch('/search', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accepts': 'application/json'
-            },
-            body: JSON.stringify({userentry})
-        }) 
-        .then(response => response.json())
-        .then(data => setProductsList(data));
-    }
-
 // curl -X POST -H "Content-Type: application/json" -d '{ "query": "shirt"}' localhost:5555/search
+
 
 //FEATURED PRODUCT 
     function handleFeaturedProduct(clickedProduct) {
@@ -105,10 +90,12 @@ export default function App () {
     return ( 
         <div>
             <Header />
+
             <Outlet context={[ 
                             handleAddToWishlist,
                             handleFeaturedProduct,
-                            wishlist
+                            wishlist,
+                            products
                         ]}
                             // searchInput,  
                             // handleFeaturedProduct ]}

@@ -6,7 +6,7 @@ import DisplayProduct from './DisplayProduct'
 // Displays all of the products that are searched //
 
 export default function DisplayProducts(){
-    const [handleAddToWishlist, handleFeaturedProduct, wishlist] = useOutletContext()
+    const [handleAddToWishlist, handleFeaturedProduct, wishlist, searchInput, products] = useOutletContext()
     
     // console.log (wishlist)
     // console.log (handleAddToWishlist)
@@ -51,7 +51,7 @@ export default function DisplayProducts(){
     //the filtered products will render like this below, I am passing down the props to the productcard 
     return (
             <div className="products-display-card">
-            {/* {products.map((product) => (
+            {products.map((product) => (
                 <DisplayProduct>
                     key={product.id}
                     product={product}
@@ -63,9 +63,9 @@ export default function DisplayProducts(){
                     handleFeaturedProduct={handleFeaturedProduct}
                     productsData={productsData}
                 </DisplayProduct>
-                ))} */}
+                ))}
 
-                {productsData.map(product => { 
+                {/* {filteredProducts.map(product => { 
                     return (<DisplayProduct
                         key={product.id}
                         product={product}
@@ -75,21 +75,25 @@ export default function DisplayProducts(){
                         handleAddToWishlist={handleAddToWishlist}
                         handleFeaturedProduct={handleFeaturedProduct}
                         productsData={productsData}
+                        // searchInput={searchInput}
                     />)
-                })}
+                })} */}
                 <p>display products page</p>
             </div>
             )
 
             }
 
-        //filtering through the database in backend 
-    // const filteredProducts = products.filter(product => {  
-    //     return (
-    //         product.name.toLowerCase().includes(searchInput.toLowerCase()) ||
-    //         product.title.toLowerCase().includes(searchInput.toLowerCase()) ||
-    //         product.brand.toLowerCase().includes(searchInput.toLowerCase()) ||
-    //         product.id.toLowerCase().includes(searchInput.toLowerCase()) ||
-    //         product.description.toLowerCase().includes(searchInput.toLowerCase()) ||
-    //         product.size.toLowerCase().includes(searchInput.toLowerCase())
-    //     )});
+                    //filtering through the database in backend 
+
+
+
+                    // const filteredProducts = productsData.filter(product => {  
+    // return (
+    //     product.name.toLowerCase().includes(searchInput.toLowerCase()) ||
+    //     product.title.toLowerCase().includes(searchInput.toLowerCase()) ||
+    //     product.brand.toLowerCase().includes(searchInput.toLowerCase()) ||
+    //     product.id.toLowerCase().includes(searchInput.toLowerCase()) ||
+    //     product.description.toLowerCase().includes(searchInput.toLowerCase()) ||
+    //     product.size.toLowerCase().includes(searchInput.toLowerCase())
+    // )});

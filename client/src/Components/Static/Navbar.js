@@ -6,8 +6,7 @@ import {Link} from 'react-router-dom';
 import ProductSearchBar from "../Pieces/ProductSearchBar";
 
 
-export default function Navbar ({searchInput, setSearchInput, handleSearch}) {
-
+export default function Navbar ({ setProductsList }) {
     return ( 
         <>
             <NavContainer>
@@ -15,7 +14,7 @@ export default function Navbar ({searchInput, setSearchInput, handleSearch}) {
                     <Link to="/">
                     <img src={logo} alt="thifty logo" className="logo" />
                     </Link>
-                    <ProductSearchBar handleSearch={handleSearch} />
+                    <ProductSearchBar setProductsList={setProductsList} />
                     <div className="nav-links">
                         <NavLink to ='/wishlist' className='nav-link'>Wishlist</NavLink>
                         <Link to='/signup'><button >Create an Account</button></Link>
@@ -26,6 +25,7 @@ export default function Navbar ({searchInput, setSearchInput, handleSearch}) {
         </>
     );
 };
+
 const NavContainer = styled.nav `
     /* justify-content: space-between;
     align-items: center;

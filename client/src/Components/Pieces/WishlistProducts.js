@@ -1,7 +1,7 @@
 import React from "react";
 import {useOutletContext} from 'react-router-dom';
 
-export default function WishlistProducts({ setWishlist}){
+export default function WishlistProducts({}){
     const [handleAddToWishlist, handleFeaturedProduct, wishlist] = useOutletContext()
 
     console.log(wishlist)
