@@ -9,4 +9,25 @@
   display: flex;
   gap: 20px;
   justify-content: space-around;
+  font-size: 15px;
+  align-items: center;
+}
+
+.product-item h1 {
+  width: 5%;
+  font-size: 15px;
+}
+
+.product-item p {
+  width: 5%;
+  font-size: 15px;
+}
+
+.image img {
+  width: 300px;
+  height: 300px;
+}
+
+.details {
+  display: contents;
 }
