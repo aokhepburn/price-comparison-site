@@ -250,16 +250,16 @@ def get_wishlist():
     
 # #     item = Item.query.get(item_data["id"])
 # #     #if above doesn't work replace with Item.query.filter(Item.id == item_data["id"]).first()
-    if not item:
-        return {"error" : "Item not found"}, 401
+    # if not item:
+    #     return {"error" : "Item not found"}, 401
 
-    if Wishlist.query.filter(Wishlist.user_id==user.id, Wishlist.item_id==item.id).first():
-            return {"error": "Item already in your wishlist"}, 401
-        else:
-            new_wishlist_item = Wishlist(user_id=user.id, item_id=item.id)
-            db.session.add(new_wishlist_item)
-            db.session.commit()
-            return Wishlist.to_dict(), 201
+    # if Wishlist.query.filter(Wishlist.user_id==user.id, Wishlist.item_id==item.id).first():
+    #         return {"error": "Item already in your wishlist"}, 401
+    # else:
+    #     new_wishlist_item = Wishlist(user_id=user.id, item_id=item.id)
+    #     db.session.add(new_wishlist_item)
+    #     db.session.commit()
+    #     return Wishlist.to_dict(), 201
 
 # #     if Item_Wishlist_Association.query.filter(Item_Wishlist_Association.user_id==user.id, Wishlist.item_id==item.id).first():
 # #         return {"error": "Item already in your wishlist"}, 401
