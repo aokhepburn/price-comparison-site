@@ -18,6 +18,10 @@ __pycache__
 Pipfile.lock
 */Pipfile.lock
 
+# Locked Version States for Node/React
+package-lock.json
+*/package-lock.json
+
 # Raw Dataset(s)
 data
 */data
@@ -35,8 +39,6 @@ keys.py
 # API Keys/Tokens
 keys.py
 */keys.py
-server/combined-apis/keys.env
-*/keys.env
 
 #NPM Dependencies
 node_modules

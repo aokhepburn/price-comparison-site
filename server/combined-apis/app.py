@@ -5,7 +5,7 @@ from models import db, Item, User, Wishlist, Item_Wishlist_Association
 import os
 import requests
 from flask_bcrypt import Bcrypt
-from dotenv import load_dotenv 
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -68,9 +68,9 @@ def index():
 #       are we wanting to assign these searches to an individual user?
 @app.post('/search')
 def search():
-    #Item.query.delete()
+    Item.query.delete()
 
-    post_data = request.json
+    post_data = request.get_json()
     ebay_data = get_data_from_ebay_api(post_data["query"])
     poshmark_data = get_data_from_poshmark_api(post_data["query"])
 
@@ -160,7 +160,34 @@ def logout():
     session.pop('user_id')
     return {"message": "Logged out"}, 200
 
-#WISHLIST ROUTES
+#accessing user's wishlist
+
+@app.get("/wishlist")
+def get_wishlist():
+    user = User.query.filter(User.id == session['user_id']).first()
+    if not user:
+        return { "error": "You don't have access to this page" }, 401
+    wishlist_items = user.wishlist_items
+
+    #     wishlist_data = []
+#     #change to to_dict
+#     for item in wishlist_items:
+#         wishlist_data.append({
+#             "id": item.id,
+#             "title": item.title,
+#             "brand": item.brand,
+#             "price": item.price,
+#             "image": item.image,
+#             "url": item.url,
+#             "description": item.description
+#         })
+
+#     return jsonify(wishlist_data)
+
+# @app.post("/wishlist")
+# def add_wishlist():
+#     #for actual set front end
+#     # post_data = request.json
 
 # #accessing user's wishlist
 # @app.get("/wishlist")
@@ -208,9 +235,6 @@ def logout():
 # #     item = Item.query.get(item_data["id"])
 # #     #if above doesn't work replace with Item.query.filter(Item.id == item_data["id"]).first()
 
-# #     if not item:
-# #         return {"error" : "Item not found"}, 401
-
 # #     if Item_Wishlist_Association.query.filter(Item_Wishlist_Association.user_id==user.id, Wishlist.item_id==item.id).first():
 # #         return {"error": "Item already in your wishlist"}, 401
 # #     else:
@@ -218,6 +242,14 @@ def logout():
 # #         db.session.add(new_wishlist_item)
 # #         db.session.commit()
 # #         return Wishlist.to_dict(), 201
+
+    if Wishlist.query.filter(Wishlist.user_id==user.id, Wishlist.item_id==item.id).first():
+        return {"error": "Item already in your wishlist"}, 401
+    else:
+        new_wishlist_item = Wishlist(user_id=user.id, item_id=item.id)
+        db.session.add(new_wishlist_item)
+        db.session.commit()
+        return Wishlist.to_dict(), 201
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
