@@ -60,8 +60,10 @@ class Item(db.Model):
     title = db.Column(db.String, nullable=False)
     price = db.Column(db.String, nullable=False)
     image = db.Column(db.String, unique = True)
+    
     #for ebay only
     url = db.Column(db.String)
+
     #for poshmark only
     brand = db.Column(db.String)
     size = db.Column(db.String)
