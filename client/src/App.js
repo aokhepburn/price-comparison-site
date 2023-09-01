@@ -5,6 +5,7 @@ import Welcome from "./Components/Routes/Welcome";
 import Products from "./Components/Pieces/Products";
 import CreateAccountPage from './Components/Routes/CreateAccountPage';
 import LoginPage from "./Components/Routes/LoginPage";
+import UserDetails from "./Components/Pieces/UserDetails";
 import WishlistProducts from "./Components/Pieces/WishlistProducts";
 
 import { Outlet, Link } from 'react-router-dom'
@@ -27,6 +28,7 @@ function App() {
 
 // curl -X POST -H "Content-Type: application/json" -d '{ "query": "shirt"}' localhost:5555/search
 
+    //  const id = user_id
 
     //FEATURED PRODUCT 
     function handleFeaturedProduct(clickedProduct) {
@@ -34,29 +36,19 @@ function App() {
     }
 
     //WISHLIST 
-
-    function userWishlistCreated () {
-        fetch("url", {
-            method: "POST",
-            headers: {
-                "Content-Type" : "application/JSON",
-            },
-            body: JSON.stringify()
-        })
-
-
-    }
-
     function handleAddToWishlist(productToAdd) {
-        fetch ("/wishlist", {
+        fetch ("/add_to_wishlist", {
             method: "POST",
             headers: {
                 "Content-Type": "application/JSON",
             },
-            body: JSON.stringify(productToAdd),
-        });
+            body: JSON.stringify({"item_id": productToAdd}),
+        })
+        .then(res=>res.json())
+        .then(data=> console.log(data));
+    
 
-        setWishlist([...wishlist, productToAdd])
+        // setWishlist([...wishlist, productToAdd])
     }
 
     //LOGING + SIGNUP 
@@ -69,6 +61,7 @@ function App() {
     }, []);
 
     function createAccount(userInfo) {
+        console.log(userInfo)
         fetch('/users', {
             method: 'POST',
             headers: {
@@ -81,7 +74,7 @@ function App() {
             .then(data => setCurrentUser(data))
     };
 
-    function attemptLogin(userInfo) {
+    function Login (userInfo) {
         fetch('/login', {
             method: 'POST',
             headers: {
@@ -94,31 +87,41 @@ function App() {
             .then(data => setCurrentUser(data))
     };
 
+
     function logout() {
-        fetch('/logout', { method: 'DELETE' })
-            .then(res => {
-                if (res.ok) {
-                    setCurrentUser(null)
-                }
-            })
+        setCurrentUser(null)
     }
+
+    // function logout() {
+    //     fetch('/logout', { method: 'DELETE' })
+    //         .then(res => {
+    //             if (res.ok) {
+    //                 setCurrentUser(null)
+    //             }
+    //         })
+    // }
     return (
         <Router>
             <div className="Header">
-                <Header setProductsList={setProductsList} />
+                <Header setProductsList={setProductsList} currentUser={currentUser} />
                 <div className="content">
                     <Switch>
                         <Route exact path="/">
                             <Welcome />
+                            {/* { currentUser ? <UserDetails currentUser={currentUser} logout={logout} /> : null } */}
                         </Route>
                         <Route path="/products" >
                             <Products products={products} handleAddToWishlist={handleAddToWishlist}/>
                         </Route>
                         <Route path="/signup">
                             <CreateAccountPage createAccount={createAccount}/>
+                            {/* { currentUser ? <UserDetails currentUser={currentUser} logout={logout} /> : null } */}
                         </Route>
                         <Route path="/login">
-                            <LoginPage />
+                            <LoginPage Login={Login} />
+                        </Route>
+                        <Route path="/withlist">
+                            <WishlistProducts wishlist={wishlist} />
                         </Route>
                     </Switch>
                 </div>
@@ -162,3 +165,15 @@ export default App;
 
     // );
 
+
+    //WISHLIST 
+
+    // function userWishlistCreated () {
+    //     fetch("url", {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type" : "application/JSON",
+    //         },
+    //         body: JSON.stringify()
+    //     })
+    // }

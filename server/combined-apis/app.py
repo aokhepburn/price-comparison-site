@@ -75,7 +75,7 @@ def search():
     Item.query.delete()
 
     post_data = request.json
-    ebay_data = get_data_from_ebay_api(post_data["query"])
+    # ebay_data = get_data_from_ebay_api(post_data["query"])
     poshmark_data = get_data_from_poshmark_api(post_data["query"])
 
     items = []
@@ -95,14 +95,14 @@ def search():
             )
             items.append(poshmarkItem)
 
-        for item in ebay_data["results"]:
-            ebayItem = Item(
-                title=item["title"],
-                price = item["price"],
-                image=item["image"],
-                url=item["url"]
-                )
-            items.append(ebayItem)
+        # for item in ebay_data["results"]:
+        #     ebayItem = Item(
+        #         title=item["title"],
+        #         price = item["price"],
+        #         image=item["image"],
+        #         url=item["url"]
+        #         )
+        #     items.append(ebayItem)
 
         db.session.add_all(items)
         db.session.commit()
@@ -121,13 +121,16 @@ def create_user():
 
     new_user = User(
         username=data["username"],
-        email=data["email"],
+        # email=data["email"],
         password_hash=password_hash
         )
     
     db.session.add(new_user)
     db.session.commit()
     session["user_id"] = new_user.id
+    new_wishlist = Wishlist(user_id=session['user_id'])
+    db.session.add(new_wishlist)
+    db.session.commit()
 
     return new_user.to_dict(), 201
 
@@ -165,12 +168,34 @@ def logout():
 
 #accessing user's wishlist
 
+# @app.get("/wishlist")
+# def get_wishlist():
+#     user = User.query.filter(User.id == session['user_id']).first()
+#     if not user:
+#         return { "error": "You don't have access to this page" }, 401
+#     wishlist_items = user.wishlist_items
+
+@app.post("/add_to_wishlist")
+def add_item_to_wishlist():
+    post_data = request.json
+    wishlist = Wishlist.query.filter(Wishlist.user_id == session.get('user_id')).first()
+    item = post_data["item_id"]
+    new_wishlist_item = Item_Wishlist_Association(item_id = item, wishlist_id=wishlist.id)
+    db.session.add(new_wishlist_item)
+    db.session.commit()
+
+    return new_wishlist_item.item_object.to_dict(), 201 
+
 @app.get("/wishlist")
-def get_wishlist():
-    user = User.query.filter(User.id == session['user_id']).first()
-    if not user:
-        return { "error": "You don't have access to this page" }, 401
-    wishlist_items = user.wishlist_items
+def get_users_wishlist():
+    wishlist = Wishlist.query.filter(Wishlist.user_id == session.get('user_id')).first()
+    items = [item_object.to_dict() for item_object in wishlist.wishlist_for_items]
+
+    # dont think the next two lines work leave commented out
+    # wishlist_association = Item_Wishlist_Association.query.filter(Item_Wishlist_Association.item_object.user.id == session.get('user_id')).first()
+    # items = wishlist_association.item_object.items_in_wishlist
+
+    return items, 200
 
     #     wishlist_data = []
 #     #change to to_dict
@@ -246,13 +271,13 @@ def get_wishlist():
 # #         db.session.commit()
 # #         return Wishlist.to_dict(), 201
 
-    if Wishlist.query.filter(Wishlist.user_id==user.id, Wishlist.item_id==item.id).first():
-        return {"error": "Item already in your wishlist"}, 401
-    else:
-        new_wishlist_item = Wishlist(user_id=user.id, item_id=item.id)
-        db.session.add(new_wishlist_item)
-        db.session.commit()
-        return Wishlist.to_dict(), 201
+    # if Wishlist.query.filter(Wishlist.user_id==user.id, Wishlist.item_id==item.id).first():
+    #     return {"error": "Item already in your wishlist"}, 401
+    # else:
+    #     new_wishlist_item = Wishlist(user_id=user.id, item_id=item.id)
+    #     db.session.add(new_wishlist_item)
+    #     db.session.commit()
+    #     return Wishlist.to_dict(), 201
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 function ProductSearchBar ({ setProductsList }) {
 
     const [newSearch, setNewSearch] = useState("") //setting state for the search
-    console.log(newSearch);
+    // console.log(newSearch);
 
     //PRODUCT SEARCH
     function handleSearch() {
@@ -28,9 +28,9 @@ function ProductSearchBar ({ setProductsList }) {
     }
 
     function handleChange(e) {
-        console.log("Logging prior to setter execution.")
+        // console.log("Logging prior to setter execution.")
         setNewSearch(e.target.value)
-        console.log("Logging after setter execution.")
+        // console.log("Logging after setter execution.")
     }
 
     function handleSubmit (e) {
@@ -51,7 +51,6 @@ function ProductSearchBar ({ setProductsList }) {
                     value={newSearch}           
                 />
                 <Link to='/products'><button onClick={handleSubmit}>🔍</button></Link>
-            
             </form>
         </SearchBarContainer>
     )

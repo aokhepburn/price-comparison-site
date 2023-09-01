@@ -6,12 +6,30 @@ export default function LoginForm({
     handleChangePassword,
     password,
     username,
-    attemptLogin,
-}) {
+    Login
+}) 
+{
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
     function handleSubmit(e) {
         e.preventDefault();
-        attemptLogin({ username, password });
+        Login({"username": username, "password": password })
+        // if login failed
+            setIsLoggedIn(true)
+        //alert("Logged in successfully!")
+        createLoginAlert()
     }
+
+    function createLoginAlert(e) {
+        if (isLoggedIn) {
+            alert("Logged in successfully!")
+        } else {
+            alert("Please try again ")
+        }
+    }
+
+
+
 
     return (
         <form className="form-container" onSubmit={handleSubmit}>

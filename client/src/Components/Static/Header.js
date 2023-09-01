@@ -4,10 +4,10 @@ import Navbar from "./Navbar";
 import FooterNavbar from "./FooterNavbar"
 
 // Holds the Navbar
-function Header ({ setProductsList }) {
+function Header ({ setProductsList, currentUser }) {
     return (
         <header>
-            <Navbar setProductsList={setProductsList} /> 
+            <Navbar setProductsList={setProductsList} currentUser={currentUser} /> 
             {/* <Outlet/> */}
             <FooterNavbar />
         </header> 

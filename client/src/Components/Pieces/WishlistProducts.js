@@ -1,33 +1,39 @@
-// import React from "react";
-// // import {useOutletContext} from 'react-router-dom';
+import React, {useState, useEffect} from "react";
+import DisplayWishlist from './DisplayWishlist'
 
-// export default function WishlistProducts({}){
-//     // const [handleAddToWishlist, handleFeaturedProduct, wishlist] = useOutletContext()
+export default function WishlistProducts({wishlist}) {
 
-//     console.log(wishlist)
+    // const [wishlist, setWishlist] = useState([])
     
-// // const filteredWishlist = wishlist.filter((product) => {  
-//     // return (
-//     //     product.name.toLowerCase().includes(searchInput.toLowerCase()) ||
-//     //     product.title.toLowerCase().includes(searchInput.toLowerCase()) ||
-//     //     product.brand.toLowerCase().includes(searchInput.toLowerCase()) ||
-//     //     product.id.toLowerCase().includes(searchInput.toLowerCase()) ||
-//     //     product.description.toLowerCase().includes(searchInput.toLowerCase()) ||
-//     //     product.size.toLowerCase().includes(searchInput.toLowerCase())
-//     // )
-// // })
+    console.log("this is the wishlist", wishlist)
 
+    useEffect(() => {
+        console.log("\n > useEffect triggering upon page (re)load.")
+        fetch('/wishlist')
+            // .then(response => response.json())
+            .then(res=>res.json())
+            .then(data => console.log(data))
+    }, []);
+
+    return (
+        <div className="wishlist-products-display">
+            {wishlist.map((product) => (
+                <DisplayWishlist
+                    key={product.id}
+                    product={product}
+                />
+            ))}
+        </div>
+    );
+            }
+
+// const filteredWishlist = wishlist.filter((product) => {  
 //     return (
-//         <div className="wishlist-products-display">
-//         {wishlist.map((product) => {
-//             return (
-//                 <div key={product.id}>
-//                     <img src={product.imageSrc} alt={product.name} />
-//                     <p>{product.brand}</p>
-//                     <p>{product.name}</p>
-//                 </div>
-//             )
-//         })}
-//         </div>
+//         product.name.toLowerCase().includes(searchInput.toLowerCase()) ||
+//         product.title.toLowerCase().includes(searchInput.toLowerCase()) ||
+//         product.brand.toLowerCase().includes(searchInput.toLowerCase()) ||
+//         product.id.toLowerCase().includes(searchInput.toLowerCase()) ||
+//         product.description.toLowerCase().includes(searchInput.toLowerCase()) ||
+//         product.size.toLowerCase().includes(searchInput.toLowerCase())
 //     )
-// }
+// })

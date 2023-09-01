@@ -8,9 +8,22 @@ export default function CreateAccountForm({
     password,
     username,
 }) {
+
+    const [isAccountCreated, setIsAccountCreated] = useState(true);
+
     function handleSubmit(e) {
         e.preventDefault();
-        createAccount({ username, password });
+        createAccount({ "username": username, "password": password });
+        setIsAccountCreated(true)
+        createAccountAlert()
+    }
+
+    function createAccountAlert(e) {
+        if (isAccountCreated) {
+            alert("Account was created successfully!")
+        } else {
+            alert("Please try again ")
+        }
     }
 
     return (
