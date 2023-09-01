@@ -1,5 +1,5 @@
 .welcome-container {
-  position: relative;
+  /* position: relative; */
   width: 100%;
   height: 100vh;
   overflow: hidden;
@@ -18,30 +18,23 @@
 .content {
   position: absolute;
   z-index: 1;
-  right: 5%;
+  right: 10%;
   top: 50%;
   transform: translateY(-50%);
   background-color: white;
-  padding: 10px;
-  border-radius: 5px;
+  padding: 20px;
+  border-radius: 10px;
   color: black;
-  font-size: 1em;
-  text-align: center;
-  width: 700px;
+  width: 200px;
   height: 400px;
   overflow: auto;
 }
 
-button {
+.btn {
+  display: inline-block;
   padding: 10px 20px;
-  font-size: 1em;
+  color: white;
   background-color: #007bff;
-  color: white;
-  border: none;
   border-radius: 5px;
-}
-
-button:hover {
-  background-color: #879ca4;
-  color: white;
+  text-decoration: none;
 }
