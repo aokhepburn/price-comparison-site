@@ -13,12 +13,6 @@ metadata = MetaData(
 )
 db = SQLAlchemy(metadata=metadata)
 
-def __handle_attribute_for_tabular_conversion(attribute):
-    if attribute is None:
-        return ""
-    else:
-        return attribute
-    
 class User(db.Model):
     __tablename__ = 'user'
     
@@ -42,7 +36,7 @@ class Wishlist(db.Model):
     wishlist_for_items = db.relationship("Item_Wishlist_Association", back_populates="wishlist_object")
 
     def to_dict(self):
-        return {"user_id":self.user_id, "items":__handle_attribute_for_tabular_conversion(self.wishlist_for_items)}
+        return {"user_id":self.user_id, "items":self.wishlist_for_items}
 
 class Item_Wishlist_Association(db.Model):
     __tablename__ = "item_wishlist_association"
@@ -52,6 +46,9 @@ class Item_Wishlist_Association(db.Model):
 
     wishlist_object = db.relationship("Wishlist", back_populates="wishlist_for_items")
     item_object = db.relationship("Item", back_populates="items_in_wishlist")
+
+    def to_dict (self):
+        return {"item_id":self.item_id, "wishlist_id":self.wishlist_id}
 
 class Item(db.Model):
     __tablename__ = 'item'
@@ -75,8 +72,8 @@ class Item(db.Model):
             "title": self.title,
             "price": self.price,
             "image": self.image,
-            "url": __handle_attribute_for_tabular_conversion(self.url),
-            "brand": __handle_attribute_for_tabular_conversion(self.brand),
-            "size": __handle_attribute_for_tabular_conversion(self.size),
-            "description": __handle_attribute_for_tabular_conversion(self.description),
+            "url": self.url,
+            "brand": self.brand,
+            "size": self.size,
+            "description": self.description,
         }

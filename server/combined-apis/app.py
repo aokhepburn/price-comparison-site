@@ -67,6 +67,7 @@ def index():
 #Question for group: 
 #       are we wanting to assign these searches to an individual user?
 @app.post('/search')
+# tested in backend development
 def search():
     Item.query.delete()
 
@@ -75,8 +76,6 @@ def search():
     poshmark_data = get_data_from_poshmark_api(post_data["query"])
 
     items = []
-
-# {"query": data}
 
     try:
 
@@ -103,7 +102,7 @@ def search():
         db.session.add_all(items)
         db.session.commit()
 
-        return "items posted successfully"  
+        return make_response(jsonify([item.to_dict() for item in items]), 201)
     
     except:
         return {"error":'dinnae work'}  
@@ -161,6 +160,35 @@ def logout():
     return {"message": "Logged out"}, 200
 
 #WISHLIST ROUTES
+@app.post("/wishlist")
+# tested in backend development
+def add_wishlist():
+    #for actual set front end
+    post_data = request.json
+    new_wishlist = Wishlist(user_id=session['user_id'])
+    
+    #for testing back end
+    # post_data = request.get_json()
+    # new_wishlist = Wishlist(user_id=post_data["user_id"])
+
+    db.session.add(new_wishlist)
+    db.session.commit()
+    return make_response(jsonify(new_wishlist.to_dict()), 201)
+
+#deleting a whishlist - mostly for development, could be used for 
+@app.delete('/wishlist/<int:id>')
+def delete_a_wishlist(id):
+    wishlist = Wishlist.query.filter(Wishlist.id==id).first()
+    db.session.delete(wishlist)
+    db.session.commit()
+    return make_response(jsonify({}), 200)
+
+#getting all wishlists - mostly for development
+@app.get("/wishlists")
+def get_wishlists():
+    wishlists = Wishlist.query.all()
+    data = [wishlist.to_dict() for wishlist in wishlists]
+    return make_response(jsonify(data), 200)
 
 # #accessing user's wishlist
 # @app.get("/wishlist")
@@ -184,21 +212,8 @@ def logout():
 #         })
 
 #     return jsonify(wishlist_data)
-
-# @app.post("/wishlist")
-# def add_wishlist():
-#     #for actual set front end
-#     # post_data = request.json
-#     # new_wishlist = Wishlist(user_id=session['user_id'])
-    
-#     #for testing back end
-#     post_data = request.get_json()
-#     new_wishlist = Wishlist(user_id=post_data["user_id"])
-#     db.session.add(new_wishlist)
-#     db.session.commit()
-#     return make_response(jsonify(Wishlist.to_dict()), 201)
-
-# # @app.post("/wishlist")
+# 
+# # # @app.post("/wishlist")
 # # def add_to_wishlist():
 # #     item_data = request.json
 # #     user = User.query.filter(User.id == session['user_id']).first()
