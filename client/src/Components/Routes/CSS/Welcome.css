@@ -1,0 +1,111 @@
+/* Welcome.css */
+
+.welcome-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+}
+
+.hero {
+  position: relative;
+  min-height: 400px; /* Adjust the height as needed */
+}
+
+.hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Adjust the overlay color and opacity */
+}
+
+.content-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  z-index: 1; /* Ensure the content is above the overlay */
+}
+
+.welcome-info {
+  flex: 1;
+}
+
+.subscribe-form {
+  flex: 1;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  color: #333;
+  padding: 20px;
+  margin-left: 20px;
+}
+
+.welcome-header {
+  background-color: #007bff;
+  color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.welcome-header h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.welcome-content {
+  font-size: 18px;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.get-started-button {
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  padding: 10px 20px;
+}
+
+.get-started-button:hover {
+  background-color: #0056b3;
+}
+
+.subscribe-form h2 {
+  color: #333;
+}
+
+.subscribe-form input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.subscribe-form button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.subscribe-form button:hover {
+  background-color: #555;
+}

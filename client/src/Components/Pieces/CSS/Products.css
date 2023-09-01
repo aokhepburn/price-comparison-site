@@ -1,0 +1,12 @@
+/* styles.css */
+.products-display-card {
+  background-color: lightgray;
+  padding: 10px; /* Add padding for spacing */
+  border-radius: 5px; /* Add some rounded corners for a nicer look */
+}
+
+.product-item {
+  display: flex;
+  gap: 20px;
+  justify-content: space-around;
+}

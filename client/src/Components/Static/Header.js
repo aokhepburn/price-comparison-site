@@ -4,13 +4,13 @@ import Navbar from "./Navbar";
 import FooterNavbar from "./FooterNavbar"
 
 // Holds the Navbar
-function Header ({ setProductsList }) {
+function Header({ setProductsList }) {
     return (
         <header>
-            <Navbar setProductsList={setProductsList} /> 
+            <Navbar setProductsList={setProductsList} />
             {/* <Outlet/> */}
-            <FooterNavbar />
-        </header> 
+            {/* <FooterNavbar /> */}
+        </header>
     )
 };
 

@@ -12,7 +12,6 @@ export default function SignUpPage({ createAccount }) {
 
     return (
         <div className="signin-container">
-            <p>create account page</p>
             <CreateAccountForm handleChangeUsername={handleChangeUsername} handleChangePassword={handleChangePassword} username={username} password={password} createAccount={createAccount} />
         </div>
     )

@@ -5,6 +5,7 @@ import Welcome from "./Components/Routes/Welcome";
 import Products from "./Components/Pieces/Products";
 import CreateAccountPage from './Components/Routes/CreateAccountPage';
 import LoginPage from "./Components/Routes/LoginPage";
+import Footer from "./Components/Static/Footer";
 import WishlistProducts from "./Components/Pieces/WishlistProducts";
 
 import { Outlet, Link } from 'react-router-dom'
@@ -25,7 +26,7 @@ function App() {
     const [wishlist, setWishlist] = useState([])
     const [featuredProduct, setFeaturedProduct] = useState([])
 
-// curl -X POST -H "Content-Type: application/json" -d '{ "query": "shirt"}' localhost:5555/search
+    // curl -X POST -H "Content-Type: application/json" -d '{ "query": "shirt"}' localhost:5555/search
 
 
     //FEATURED PRODUCT 
@@ -35,11 +36,11 @@ function App() {
 
     //WISHLIST 
 
-    function userWishlistCreated () {
+    function userWishlistCreated() {
         fetch("url", {
             method: "POST",
             headers: {
-                "Content-Type" : "application/JSON",
+                "Content-Type": "application/JSON",
             },
             body: JSON.stringify()
         })
@@ -48,7 +49,7 @@ function App() {
     }
 
     function handleAddToWishlist(productToAdd) {
-        fetch ("/wishlist", {
+        fetch("/wishlist", {
             method: "POST",
             headers: {
                 "Content-Type": "application/JSON",
@@ -112,16 +113,17 @@ function App() {
                             <Welcome />
                         </Route>
                         <Route path="/products" >
-                            <Products products={products} handleAddToWishlist={handleAddToWishlist}/>
+                            <Products products={products} handleAddToWishlist={handleAddToWishlist} />
                         </Route>
                         <Route path="/signup">
-                            <CreateAccountPage createAccount={createAccount}/>
+                            <CreateAccountPage createAccount={createAccount} />
                         </Route>
                         <Route path="/login">
                             <LoginPage />
                         </Route>
                     </Switch>
                 </div>
+                <Footer />
             </div>
         </Router>
     )
@@ -140,21 +142,21 @@ export default App;
     //     <div>
     //         <Header setProductsList={setProductsList}/>
 
-    //         <Outlet context={[ 
+    //         <Outlet context={[
     //                         handleAddToWishlist,
     //                         handleFeaturedProduct,
     //                         wishlist,
     //                         products
     //                     ]}
-    //                         // searchInput,  
+    //                         // searchInput,
     //                         // handleFeaturedProduct ]}
     //         />
     //         {/* <Navbar searchInput={searchInput} handleSearch={handleSearch}/>  */}
     //         {/* <Products products={products}/> */}
     //         {/* <Products searchInput={searchInput} products={products} handleAddToWishlist={handleAddToWishlist} handleFeaturedProduct= {handleFeaturedProduct}/>  */}
     //         {/* <FeaturedProduct featuredProduct={featuredProduct} handleAddToWishlist={handleAddToWishlist}/>
-    //         <CreateAccountPage createAccount={createAccount}/> 
-    //         <LoginPage attemptLogin={attemptLogin} /> 
+    //         <CreateAccountPage createAccount={createAccount}/>
+    //         <LoginPage attemptLogin={attemptLogin} />
     //         <WishlistProducts setWishlist={setWishlist} wishlist={wishlist} /> */}
 
     //     </div>
