@@ -11,6 +11,10 @@
   justify-content: space-around;
   font-size: 15px;
   align-items: center;
+  background-color: darkgrey;
+  padding: 10px;
+  margin: 10px;
+  overflow: scroll;
 }
 
 .product-item h1 {
@@ -21,6 +25,8 @@
 .product-item p {
   width: 5%;
   font-size: 15px;
+  text-align: center;
+  height: 5px;
 }
 
 .image img {

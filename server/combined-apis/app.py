@@ -73,7 +73,7 @@ def search():
     Item.query.delete()
 
     post_data = request.get_json()
-    ebay_data = get_data_from_ebay_api(post_data["query"])
+    # ebay_data = get_data_from_ebay_api(post_data["query"])
     poshmark_data = get_data_from_poshmark_api(post_data["query"])
 
     items = []
@@ -93,14 +93,14 @@ def search():
             )
             items.append(poshmarkItem)
 
-        for item in ebay_data["results"]:
-            ebayItem = Item(
-                title=item["title"],
-                price = item["price"],
-                image=item["image"],
-                url=item["url"]
-                )
-            items.append(ebayItem)
+        # for item in ebay_data["results"]:
+        #     ebayItem = Item(
+        #         title=item["title"],
+        #         price = item["price"],
+        #         image=item["image"],
+        #         url=item["url"]
+        #         )
+        #     items.append(ebayItem)
 
         db.session.add_all(items)
         db.session.commit()
