@@ -5,23 +5,18 @@ import DisplayProduct from './DisplayProduct'
 
 // Displays all of the products that are searched //
 
-export default function DisplayProducts({ products}){
+export default function Products({ products}){
     // console.log(products)
     //the filtered products will render like this below, I am passing down the props to the productcard 
+    console.log(products)
     return (
             <div className="products-display-card">
             {products.map((product) => (
-                <DisplayProduct>
+                <DisplayProduct
                     key={product.id}
-                    product={product}
-                    image={product.image}
-                    title={product.title}
-                    brand={product.brand}
-                    description={product.description}
-                    {/* handleAddToWishlist={handleAddToWishlist}
-                    handleFeaturedProduct={handleFeaturedProduct} */}
-                    {/* productsData={productsData} */}
-                </DisplayProduct>
+                    product={product} />
+
+
                 ))}
                 <p>display products page</p>
             </div>

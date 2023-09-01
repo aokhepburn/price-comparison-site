@@ -19,7 +19,7 @@ function App() {
     const [currentUser, setCurrentUser] = useState(null)
     // const [searchInput, setSearchInput] = useState("")
     const [products, setProductsList] = useState([])
-    console.log("HERE'S MY SHIT:   ", products)
+    //console.log("HERE'S MY SHIT:   ", products)
     const [wishlist, setWishlist] = useState([])
     const [featuredProduct, setFeaturedProduct] = useState([])
 
