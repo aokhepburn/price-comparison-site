@@ -13,6 +13,15 @@ metadata = MetaData(
 )
 db = SQLAlchemy(metadata=metadata)
 
+<<<<<<< HEAD
+=======
+def __handle_attribute_for_tabular_conversion(attribute, dtype=str):
+    if type(attribute) != dtype:
+        return ""
+    else:
+        return attribute
+    
+>>>>>>> main
 class User(db.Model):
     __tablename__ = 'user'
     
@@ -57,8 +66,10 @@ class Item(db.Model):
     title = db.Column(db.String, nullable=False)
     price = db.Column(db.String, nullable=False)
     image = db.Column(db.String, unique = True)
+    
     #for ebay only
     url = db.Column(db.String)
+
     #for poshmark only
     brand = db.Column(db.String)
     size = db.Column(db.String)
@@ -76,4 +87,8 @@ class Item(db.Model):
             "brand": self.brand,
             "size": self.size,
             "description": self.description,
+<<<<<<< HEAD
         }
+=======
+        }
+>>>>>>> main
