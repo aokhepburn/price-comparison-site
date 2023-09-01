@@ -25,6 +25,7 @@ db.init_app(app)
 
 #function for retrieving ebay api data
 def get_data_from_ebay_api(userInput):
+    print("WHERE AM IIIIIII", userInput)
     rapidapi_key_ebay = os.getenv('EBAY_RAPIDAPI_KEY')
     url = f"https://ebay-search-result.p.rapidapi.com/search/{userInput.replace(' ', '%20')}"
 
@@ -32,7 +33,10 @@ def get_data_from_ebay_api(userInput):
         "X-RapidAPI-Key": rapidapi_key_ebay,  # Use the API key variable
         "X-RapidAPI-Host": "ebay-search-result.p.rapidapi.com"
     }
+    print("WHOOOOOOOOOO")
     ebay_response = requests.get(url, headers=headers)
+    print("WHEEEEEEEEEEE")
+    print(ebay_response)
 
     if ebay_response.status_code == 200:
         ebay_data = ebay_response.json()
@@ -70,7 +74,7 @@ def index():
 def search():
     Item.query.delete()
 
-    post_data = request.get_json()
+    post_data = request.json
     ebay_data = get_data_from_ebay_api(post_data["query"])
     poshmark_data = get_data_from_poshmark_api(post_data["query"])
 
@@ -103,8 +107,7 @@ def search():
         db.session.add_all(items)
         db.session.commit()
 
-        return "items posted successfully"  
-    
+        return make_response(jsonify([item.to_dict() for item in items]), 201) 
     except:
         return {"error":'dinnae work'}  
     
