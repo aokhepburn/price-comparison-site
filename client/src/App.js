@@ -18,6 +18,7 @@ export default function App() {
     const [currentUser, setCurrentUser] = useState(null)
     // const [searchInput, setSearchInput] = useState("")
     const [products, setProductsList] = useState([])
+    console.log("HERE'S MY SHIT:   ", products)
     const [wishlist, setWishlist] = useState([])
     const [featuredProduct, setFeaturedProduct] = useState([])
 
@@ -44,12 +45,12 @@ export default function App() {
 
     //LOGING + SIGNUP 
     useEffect(() => {
+        console.log("\n > useEffect triggering upon page (re)load.")
         fetch('/check_session')
-            .then(res => {
-                res.json()
-                    .then(user => setCurrentUser(user))
-            })
-    }, [])
+            // .then(response => response.json())
+            .then(user => setCurrentUser(user))
+            .then(() => console.log("\n > useEffect completed."))
+    }, []);
 
     function createAccount(userInfo) {
         fetch('/users', {
@@ -91,7 +92,7 @@ export default function App() {
 
     return (
         <div>
-            <Header />
+            <Header setProductsList={setProductsList}/>
 
             <Outlet context={[ 
                             handleAddToWishlist,
@@ -101,12 +102,9 @@ export default function App() {
                         ]}
                             // searchInput,  
                             // handleFeaturedProduct ]}
-
-
-            
-            
             />
             {/* <Navbar searchInput={searchInput} handleSearch={handleSearch}/>  */}
+            {/* <Products products={products}/> */}
             {/* <Products searchInput={searchInput} products={products} handleAddToWishlist={handleAddToWishlist} handleFeaturedProduct= {handleFeaturedProduct}/>  */}
             {/* <FeaturedProduct featuredProduct={featuredProduct} handleAddToWishlist={handleAddToWishlist}/>
             <CreateAccountPage createAccount={createAccount}/> 

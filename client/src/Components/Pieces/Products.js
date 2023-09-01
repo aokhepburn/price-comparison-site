@@ -5,8 +5,9 @@ import DisplayProduct from './DisplayProduct'
 
 // Displays all of the products that are searched //
 
-export default function DisplayProducts(){
+export default function DisplayProducts({ }){
     const [handleAddToWishlist, handleFeaturedProduct, wishlist, searchInput, products] = useOutletContext()
+    console.log("MORE SHIT OVER HERE: ", products)
     
     // console.log (wishlist)
     // console.log (handleAddToWishlist)
