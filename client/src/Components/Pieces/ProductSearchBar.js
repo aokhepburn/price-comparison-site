@@ -2,11 +2,10 @@ import React, {useState} from "react";
 import styled from 'styled-components';
 import {Link} from 'react-router-dom'
 
-export default function ProductSearchBar ({ setProductsList }) {
+function ProductSearchBar ({ setProductsList }) {
 
-    const [newSearch, setNewSearch] = useState("")
+    const [newSearch, setNewSearch] = useState("") //setting state for the search
     console.log(newSearch);
-    // const [searchInput, setSearchInput] = useState("")
 
     //PRODUCT SEARCH
     function handleSearch() {
@@ -51,11 +50,13 @@ export default function ProductSearchBar ({ setProductsList }) {
                     onChange={handleChange}
                     value={newSearch}           
                 />
-                <Link to='/products'><button onClick={handleSubmit}>🔍</button></Link>
+                <button onClick={handleSubmit}>🔍</button>
             </form>
         </SearchBarContainer>
     )
 }
+
+export default ProductSearchBar;
 
 const SearchBarContainer = styled.div `
     .search-container{

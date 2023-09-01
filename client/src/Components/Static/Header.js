@@ -1,15 +1,15 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
-import {Link, useOutletContext} from 'react-router-dom';
-// import logo from '../Static/Components/assets/logo.png';
-
 import Navbar from "./Navbar";
+// import { Outlet } from 'react-router-dom'
 
-export default function Header ({ setProductsList }) {
+// Holds the Navbar
+function Header ({ setProductsList }) {
     return (
         <header>
             <Navbar setProductsList={setProductsList} /> 
-        </header>
-
+            {/* <Outlet/> */}
+        </header> 
     )
-}
+};
+
+export default Header;

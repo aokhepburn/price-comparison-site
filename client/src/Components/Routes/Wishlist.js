@@ -1,9 +1,9 @@
-import React from "react";
+// import React from "react";
 
-export default function Wishlist () {
-    return 
-    <>
-        <displayWishlistProducts/>
-        <wishlistSearchbar />
-    </>
-};
+// export default function Wishlist () {
+//     return 
+//     <>
+//         <displayWishlistProducts/>
+//         <wishlistSearchbar />
+//     </>
+// };
