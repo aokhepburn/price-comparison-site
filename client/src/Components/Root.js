@@ -9,7 +9,7 @@ export default function Root() {
             <Header/>
             <App/>{
             /* <Footer/> */}
-
+            <h1>What am I?</h1>
         </div>
     )
 }

@@ -26,8 +26,8 @@ export default function Search ({setSearchInput, searchInput}) {
                     onChange={handleChange}
                     value={searchInput}           
                 />
-                <Link to='/products'><button type="submit" >🔍</button>
-                </Link>
+                {/* <Link to='/products'><button type="submit" >🔍</button> */}
+                {/* </Link> */}
         </div>
         </wislistSearchContainer>
     )

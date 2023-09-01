@@ -1,14 +1,17 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
-// import logo from '../Static/Components/assets/logo.png';
-
 import Navbar from "./Navbar";
+// import { Outlet } from 'react-router-dom'
+import FooterNavbar from "./FooterNavbar"
 
-export default function Header () {
+// Holds the Navbar
+function Header ({ setProductsList }) {
     return (
         <header>
-            <Navbar /> 
-        </header>
-
+            <Navbar setProductsList={setProductsList} /> 
+            {/* <Outlet/> */}
+            <FooterNavbar />
+        </header> 
     )
-}
+};
+
+export default Header;

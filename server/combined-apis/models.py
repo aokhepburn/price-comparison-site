@@ -13,8 +13,8 @@ metadata = MetaData(
 )
 db = SQLAlchemy(metadata=metadata)
 
-def __handle_attribute_for_tabular_conversion(attribute):
-    if attribute is None:
+def __handle_attribute_for_tabular_conversion(attribute, dtype=str):
+    if type(attribute) != dtype:
         return ""
     else:
         return attribute
@@ -77,8 +77,8 @@ class Item(db.Model):
             "title": self.title,
             "price": self.price,
             "image": self.image,
-            "url": __handle_attribute_for_tabular_conversion(self.url),
-            "brand": __handle_attribute_for_tabular_conversion(self.brand),
-            "size": __handle_attribute_for_tabular_conversion(self.size),
-            "description": __handle_attribute_for_tabular_conversion(self.description),
+            "url": self.url,
+            "brand": self.brand,
+            "size": self.size,
+            "description": self.description,
         }
