@@ -39,7 +39,7 @@ class Wishlist(db.Model):
     
     user = db.relationship("User", back_populates="wishlists")
     
-    wishlist_for_items = db.relationship("Item", back_populates="wishlist_object")
+    wishlist_for_items = db.relationship("Item_Wishlist_Association", back_populates="wishlist_object")
 
     def to_dict(self):
         return {"user_id":self.user_id, "items":__handle_attribute_for_tabular_conversion(self.wishlist_for_items)}
@@ -67,7 +67,7 @@ class Item(db.Model):
     size = db.Column(db.String)
     description = db.Column(db.String)
 
-    items_in_wishlist = db.relationship("Wishlist", back_populates="item_object")
+    items_in_wishlist = db.relationship("Item_Wishlist_Association", back_populates="item_object")
 
     def to_dict(self):
         return {
