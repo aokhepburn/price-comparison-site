@@ -1,18 +1,16 @@
-<<<<<<< HEAD
-import React, { useState } from 'react';
-import WishlistProduct from './WishlistProduct';
-import './WishlistProduct.css';
+import React, { useState } from "react";  
+import './WishlistProducts.css';
 
-function WishlistProducts({ wishlistProducts }) {
+export default function WishlistProducts({ wishlist, setWishlist }) {
     const [searchText, setSearchText] = useState('');
-    const [filteredProducts, setFilteredProducts] = useState(wishlistProducts);
+    const [filteredProducts, setFilteredProducts] = useState();  
 
     const handleSearch = () => {
-        const filtered = wishlistProducts.filter(product =>
+        const filtered = wishlist.filter(product =>
             product.name.toLowerCase().includes(searchText.toLowerCase())
         );
         setFilteredProducts(filtered);
-    };
+    }
 
     return (
         <div className="wishlist-container">
@@ -35,52 +33,32 @@ function WishlistProducts({ wishlistProducts }) {
                         <th>Image</th>
                         <th>Price</th>
                         <th>  </th>
-                        
                     </tr>
-                    {filteredProducts.map(wishlistProduct => (
-                        <WishlistProduct
-                            key={wishlistProduct.id}
-                            wishlistProduct={wishlistProduct}
-                        />
+                    {filteredProducts.map(product => (
+                        <tr key={product.id} className="wishlist-product-row"> 
+                            <td className=".wishlist-item">  
+                                <span>{product.name}</span>
+                            </td>
+                            <td className="wishlist-item">  
+                                <span>{product.brand}</span>
+                            </td>
+                            <td className="wishlist-item">
+                                <img
+                                    className="wishlist-product-image"
+                                    src={product.imageSrc}
+                                    alt={product.name}
+                                />
+                            </td>
+                            <td className="wishlist-item">
+                                <span>${product.price}</span>
+                            </td>
+                            <td>
+                                <button>Delete</button>
+                            </td>
+                        </tr>
                     ))}
                 </tbody>
             </table>
         </div>
     );
 }
-
-export default WishlistProducts;
-=======
-import React from "react";
-
-export default function WishlistProducts({ wishlist, setWishlist }) {
-
-    const filteredWishlist = wishlist.filter((product) => {
-        return (
-            product.name.toLowerCase().includes(searchInput.toLowerCase()) ||
-            product.title.toLowerCase().includes(searchInput.toLowerCase()) ||
-            product.brand.toLowerCase().includes(searchInput.toLowerCase()) ||
-            product.id.toLowerCase().includes(searchInput.toLowerCase()) ||
-            product.description.toLowerCase().includes(searchInput.toLowerCase()) ||
-            product.size.toLowerCase().includes(searchInput.toLowerCase())
-        )
-    })
-
-    return (
-        <div className="wishlist-products-display">
-            {filteredWishlist.map((product) => {
-                return (
-                    <div>
-                        key={product.id}
-                        product={product}
-                        image={product.imageSrc}
-                        brand={product.brand}
-                        name={product.name}
-                    </div>
-                )
-            }
-            )}
-        </div>
-    )
-}
->>>>>>> main
