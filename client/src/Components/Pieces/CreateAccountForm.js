@@ -43,7 +43,7 @@ export default function CreateAccountForm({
                             value={password}
                         />
                     </div>
-                    <input className="submit-button" type="submit" value="Create new account" />
+                    <button className="submit-button" type="submit" value="Create new account" >Create new account</button>
                 </form>
             </div>
         </div>

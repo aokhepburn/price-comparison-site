@@ -5,7 +5,7 @@ import DisplayProduct from './DisplayProduct'
 
 // Displays all of the products that are searched //
 
-export default function Products({ products}){
+export default function Products({ products, handleAddToWishlist}){
     // console.log(products)
     //the filtered products will render like this below, I am passing down the props to the productcard 
     console.log(products)
@@ -14,8 +14,9 @@ export default function Products({ products}){
             {products.map((product) => (
                 <DisplayProduct
                     key={product.id}
-                    product={product} />
-
+                    product={product}
+                    handleAddToWishlist={handleAddToWishlist}
+                    />
 
                 ))}
                 <p>display products page</p>

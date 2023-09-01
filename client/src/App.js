@@ -5,12 +5,14 @@ import Welcome from "./Components/Routes/Welcome";
 import Products from "./Components/Pieces/Products";
 import CreateAccountPage from './Components/Routes/CreateAccountPage';
 import LoginPage from "./Components/Routes/LoginPage";
+import WishlistProducts from "./Components/Pieces/WishlistProducts";
+
 import { Outlet, Link } from 'react-router-dom'
 import Navbar from './Components/Static/Navbar';
 import DisplayProduct from "./Components/Pieces/DisplayProduct";
 import DisplayWishlistProducts from "./Components/Pieces/WishlistProducts";
 import FeaturedProduct from "./Components/Pieces/FeaturedProduct";
-import WishlistProducts from "./Components/Pieces/WishlistProducts";
+
 
 // The main app page, pareant. landing page, idk //
 
@@ -32,14 +34,27 @@ function App() {
     }
 
     //WISHLIST 
+
+    function userWishlistCreated () {
+        fetch("url", {
+            method: "POST",
+            headers: {
+                "Content-Type" : "application/JSON",
+            },
+            body: JSON.stringify()
+        })
+
+
+    }
+
     function handleAddToWishlist(productToAdd) {
-        // fetch ("/wishlist", {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/JSON",
-        //     },
-        //     body: JSON.stringify(productToAdd),
-        // });
+        fetch ("/wishlist", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/JSON",
+            },
+            body: JSON.stringify(productToAdd),
+        });
 
         setWishlist([...wishlist, productToAdd])
     }
@@ -97,10 +112,10 @@ function App() {
                             <Welcome />
                         </Route>
                         <Route path="/products" >
-                            <Products products={products}/>
+                            <Products products={products} handleAddToWishlist={handleAddToWishlist}/>
                         </Route>
                         <Route path="/signup">
-                            <CreateAccountPage />
+                            <CreateAccountPage createAccount={createAccount}/>
                         </Route>
                         <Route path="/login">
                             <LoginPage />

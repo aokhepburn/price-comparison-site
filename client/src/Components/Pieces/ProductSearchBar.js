@@ -50,7 +50,8 @@ function ProductSearchBar ({ setProductsList }) {
                     onChange={handleChange}
                     value={newSearch}           
                 />
-                <button onClick={handleSubmit}>🔍</button>
+                <Link to='/products'><button onClick={handleSubmit}>🔍</button></Link>
+            
             </form>
         </SearchBarContainer>
     )
