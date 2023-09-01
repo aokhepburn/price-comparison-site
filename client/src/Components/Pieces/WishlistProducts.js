@@ -5,27 +5,31 @@ export default function WishlistProducts({wishlist}) {
 
     // const [wishlist, setWishlist] = useState([])
     
-    console.log("this is the wishlist", wishlist)
+    // console.log("this is the wishlist", wishlist)
 
-    useEffect(() => {
-        console.log("\n > useEffect triggering upon page (re)load.")
-        fetch('/wishlist')
-            // .then(response => response.json())
-            .then(res=>res.json())
-            .then(data => console.log(data))
-    }, []);
+    // useEffect(() => {
+    //     console.log("\n > useEffect triggering upon page (re)load.")
+    //     fetch('/wishlist')
+    //         // .then(response => response.json())
+    //         .then(res=>res.json())
+    //         .then(data => console.log(data))
+    // }, []);
+
+    console.log("this is the wishlist", wishlist)
 
     return (
         <div className="wishlist-products-display">
-            {wishlist.map((product) => (
+            {/* {wishlist.map((product) => ( */}
                 <DisplayWishlist
-                    key={product.id}
-                    product={product}
+                    key={wishlist.id}
+                    // product={product}
+                    wishlist={wishlist}
                 />
-            ))}
+            {/* ))} */}
+            <p>wishlist products page</p>
         </div>
     );
-            }
+}
 
 // const filteredWishlist = wishlist.filter((product) => {  
 //     return (

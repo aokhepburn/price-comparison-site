@@ -45,15 +45,16 @@ function App() {
             body: JSON.stringify({"item_id": productToAdd}),
         })
         .then(res=>res.json())
-        .then(data=> console.log(data));
+        .then(data=> setWishlist(data));
     
+        // setWishlist = ([...wishlist, data])
+        console.log(wishlist)
 
-        // setWishlist([...wishlist, productToAdd])
     }
 
     //LOGING + SIGNUP 
     useEffect(() => {
-        console.log("\n > useEffect triggering upon page (re)load.")
+        // console.log("\n > useEffect triggering upon page (re)load.")
         fetch('/check_session')
             // .then(response => response.json())
             .then(user => setCurrentUser(user))
@@ -120,7 +121,7 @@ function App() {
                         <Route path="/login">
                             <LoginPage Login={Login} />
                         </Route>
-                        <Route path="/withlist">
+                        <Route path="/wishlist">
                             <WishlistProducts wishlist={wishlist} />
                         </Route>
                     </Switch>

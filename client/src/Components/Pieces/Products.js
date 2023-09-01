@@ -9,6 +9,7 @@ export default function Products({ products, handleAddToWishlist}){
     // console.log(products)
     //the filtered products will render like this below, I am passing down the props to the productcard 
     // console.log(products)
+    console.log("Hi from products")
     return (
             <div className="products-display-card">
             {products.map((product) => (
