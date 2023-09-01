@@ -3,13 +3,13 @@ import React, { useEffect, useState } from "react";
 import Header from "./Components/Static/Header";
 import Welcome from "./Components/Routes/Welcome";
 import Products from "./Components/Pieces/Products";
+import CreateAccountPage from './Components/Routes/CreateAccountPage';
+import LoginPage from "./Components/Routes/LoginPage";
 import { Outlet, Link } from 'react-router-dom'
 import Navbar from './Components/Static/Navbar';
-import CreateAccountPage from './Components/Routes/CreateAccountPage';
 import DisplayProduct from "./Components/Pieces/DisplayProduct";
 import DisplayWishlistProducts from "./Components/Pieces/WishlistProducts";
 import FeaturedProduct from "./Components/Pieces/FeaturedProduct";
-import LoginPage from "./Components/Routes/LoginPage";
 import WishlistProducts from "./Components/Pieces/WishlistProducts";
 
 // The main app page, pareant. landing page, idk //
@@ -98,6 +98,12 @@ function App() {
                         </Route>
                         <Route path="/products" >
                             <Products products={products}/>
+                        </Route>
+                        <Route path="/signup">
+                            <CreateAccountPage />
+                        </Route>
+                        <Route path="/login">
+                            <LoginPage />
                         </Route>
                     </Switch>
                 </div>
