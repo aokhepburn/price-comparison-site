@@ -5,13 +5,13 @@ import {Link} from 'react-router-dom';
 
 export default function DisplayProduct ({ product, handleAddToWishlist, handleFeaturedProduct}) {
     console.log(product)
+    
     function handleClick (e) {
         handleAddToWishlist(product)
     }
 
     function handleClickedProduct (e) {
-        handleFeaturedProduct(product)
-        
+        handleFeaturedProduct(product)   
     }
 
     return (

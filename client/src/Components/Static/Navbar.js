@@ -17,7 +17,7 @@ export default function Navbar ({ setProductsList }) {
                     <div className="nav-links">
                         <NavLink to ='/wishlist' className='nav-link'>Wishlist</NavLink>
                         <NavLink to ='/products' className='nav-link'>Products</NavLink>
-                        <Link to='/signup'><button >Create an Account</button></Link>
+                        <Link to='/signup'><button>Create an Account</button></Link>
                         <Link to='/login'><button >Login</button></Link>
                     </div>
                 </div>
