@@ -44,9 +44,10 @@ body {
 
 /* Social media sign-up buttons */
 .social-media-signup {
-  display: flex;
-  flex-direction: column;
-  margin-top: 40px;
+  display: inline-flex;
+  flex-direction: row;
+  /* margin-top: 40px; */
+  margin: 25px;
   align-items: center;
 }
 
@@ -55,12 +56,13 @@ body {
   color: #1e90ff;
   border: 1px solid #1e90ff;
   border-radius: 4px;
-  padding: 10px 20px;
+  padding: 11px 20px;
   font-size: 16px;
   margin-bottom: 10px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
   width: 142px;
+  margin: 4px;
 }
 
 .social-media-button:hover {
