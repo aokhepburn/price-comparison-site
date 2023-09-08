@@ -1,11 +1,14 @@
 import React, {useState, useEffect} from "react";
 import {Link} from 'react-router-dom';
+import WishlistSearchBar from '../Pieces/WishlistSearchBar'
 
 // this is the individal card that the product will be displayed in 
 
 export default function DisplayWishlist ({ product, wishlist}) {
     
     console.log("product")
+
+
 
     return (
         <div className="product-item">

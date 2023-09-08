@@ -6,18 +6,14 @@ export default function LoginForm({
     handleChangePassword,
     password,
     username,
-    Login
+    attemptLogin
 }) 
 {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     function handleSubmit(e) {
         e.preventDefault();
-        Login({"username": username, "password": password })
-        // if login failed
-            setIsLoggedIn(true)
-        //alert("Logged in successfully!")
-        createLoginAlert()
+        attemptLogin({"username": username, "password": password })
     }
 
     function createLoginAlert(e) {
@@ -58,3 +54,19 @@ export default function LoginForm({
         </form>
     );
 }
+
+
+
+
+        //     // if login failed
+    //         setIsLoggedIn(true)
+    //     //alert("Logged in successfully!")
+    //     createLoginAlert()
+
+    // function createLoginAlert(e) {
+    //     if (isLoggedIn) {
+    //         alert("Logged in successfully!")
+    //     } else {
+    //         alert("Please try again ")
+    //     }
+    // }

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {Link, useOutletContext} from 'react-router-dom';
-import DisplayProduct from './DisplayProduct'
+import DisplayProduct from '../Pieces/DisplayProduct'
 
 
 // Displays all of the products that are searched //

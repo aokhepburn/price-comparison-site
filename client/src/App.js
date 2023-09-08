@@ -2,16 +2,16 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import React, { useEffect, useState } from "react";
 import Header from "./Components/Static/Header";
 import Welcome from "./Components/Routes/Welcome";
-import Products from "./Components/Pieces/Products";
+import Products from "./Components/Routes/Products";
 import CreateAccountPage from './Components/Routes/CreateAccountPage';
 import LoginPage from "./Components/Routes/LoginPage";
 import UserDetails from "./Components/Pieces/UserDetails";
-import WishlistProducts from "./Components/Pieces/WishlistProducts";
+import WishlistProducts from "./Components/Routes/WishlistProducts";
 
 import { Outlet, Link } from 'react-router-dom'
 import Navbar from './Components/Static/Navbar';
 import DisplayProduct from "./Components/Pieces/DisplayProduct";
-import DisplayWishlistProducts from "./Components/Pieces/WishlistProducts";
+import DisplayWishlistProducts from "./Components/Routes/WishlistProducts";
 import FeaturedProduct from "./Components/Pieces/FeaturedProduct";
 
 
@@ -20,15 +20,53 @@ import FeaturedProduct from "./Components/Pieces/FeaturedProduct";
 function App() {
 
     const [currentUser, setCurrentUser] = useState(null)
-    // const [searchInput, setSearchInput] = useState("")
     const [products, setProductsList] = useState([])
-    //console.log("HERE'S MY SHIT:   ", products)
     const [wishlist, setWishlist] = useState([])
     const [featuredProduct, setFeaturedProduct] = useState([])
 
 // curl -X POST -H "Content-Type: application/json" -d '{ "query": "shirt"}' localhost:5555/search
 
-    //  const id = user_id
+
+    //LOGING + SIGNUP 
+    useEffect(() => {
+        fetch('/check_session')
+            .then(user => setCurrentUser(user))
+            .then(() => console.log("\n > useEffect completed."))
+    }, []);
+
+    function createAccount(userInfo) {
+        console.log(userInfo)
+        fetch('/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accepts': 'application/json'
+            },
+            body: JSON.stringify(userInfo)
+        })
+            .then(response => response.json())
+            .then(data => setCurrentUser(data))
+    };
+
+    function attemptLogin (userInfo) {
+        fetch('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accepts': 'application/json'
+            },
+            body: JSON.stringify(userInfo)
+        })
+            .then(response => response.json())
+            .then(data => setCurrentUser(data))
+    }
+
+    function logout() {
+        fetch('/logout', {method: 'DELETE'})
+        .then(response => {if (response.ok) {setCurrentUser(null)}})
+        console.log("logout")
+    }  
+
 
     //FEATURED PRODUCT 
     function handleFeaturedProduct(clickedProduct) {
@@ -52,74 +90,23 @@ function App() {
 
     }
 
-    //LOGING + SIGNUP 
-    useEffect(() => {
-        // console.log("\n > useEffect triggering upon page (re)load.")
-        fetch('/check_session')
-            // .then(response => response.json())
-            .then(user => setCurrentUser(user))
-            .then(() => console.log("\n > useEffect completed."))
-    }, []);
-
-    function createAccount(userInfo) {
-        console.log(userInfo)
-        fetch('/users', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accepts': 'application/json'
-            },
-            body: JSON.stringify(userInfo)
-        })
-            .then(response => response.json())
-            .then(data => setCurrentUser(data))
-    };
-
-    function Login (userInfo) {
-        fetch('/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accepts': 'application/json'
-            },
-            body: JSON.stringify(userInfo)
-        })
-            .then(response => response.json())
-            .then(data => setCurrentUser(data))
-    };
-
-
-    function logout() {
-        setCurrentUser(null)
-    }
-
-    // function logout() {
-    //     fetch('/logout', { method: 'DELETE' })
-    //         .then(res => {
-    //             if (res.ok) {
-    //                 setCurrentUser(null)
-    //             }
-    //         })
-    // }
     return (
         <Router>
             <div className="Header">
-                <Header setProductsList={setProductsList} currentUser={currentUser} />
+                <Header setProductsList={setProductsList} currentUser={currentUser} logout={logout}/>
                 <div className="content">
                     <Switch>
                         <Route exact path="/">
                             <Welcome />
-                            {/* { currentUser ? <UserDetails currentUser={currentUser} logout={logout} /> : null } */}
                         </Route>
                         <Route path="/products" >
                             <Products products={products} handleAddToWishlist={handleAddToWishlist}/>
                         </Route>
                         <Route path="/signup">
                             <CreateAccountPage createAccount={createAccount}/>
-                            {/* { currentUser ? <UserDetails currentUser={currentUser} logout={logout} /> : null } */}
                         </Route>
                         <Route path="/login">
-                            <LoginPage Login={Login} />
+                            <LoginPage attemptLogin={attemptLogin} currentUser={currentUser} />
                         </Route>
                         <Route path="/wishlist">
                             <WishlistProducts wishlist={wishlist} />
