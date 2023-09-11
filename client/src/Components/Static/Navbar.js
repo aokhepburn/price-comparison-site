@@ -16,12 +16,6 @@ export default function Navbar ({ setProductsList, currentUser, logout }) {
                     <img src={logo} alt="thifty logo" className="logo" />
                     </Link>
                     <ProductSearchBar setProductsList={setProductsList} />
-                    <div className="nav-links">
-                        {/* <NavLink to ='/wishlist' className='nav-link'>Wishlist</NavLink>
-                        <NavLink to ='/products' className='nav-link'>Products</NavLink> */}
-                        {/* <Link to='/signup'><button>Create an Account</button></Link>
-                        <Link to='/login'><button >Login</button></Link> */}
-                    </div>
                     { currentUser?.username?.length > 0
                     ? (
                     <div>
@@ -30,7 +24,6 @@ export default function Navbar ({ setProductsList, currentUser, logout }) {
                         logout={logout} />
                         <NavLink to ='/wishlist' className='nav-link'>Wishlist</NavLink>
                         <NavLink to ='/products' className='nav-link'>Products</NavLink> 
-                        <Link to='/login'><button >Login</button></Link>
                     </div>
                     )
                     : (

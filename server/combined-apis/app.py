@@ -152,12 +152,6 @@ def login():
 
 @app.get('/check_session')
 def check_session():
-    
-    print(User.username)
-    print(f"Current Logged User ID: {User.id}")
-    print(f"Current Session User ID: {session.get('user_id')}")
-    # import ipdb; ipdb.set_trace()
-    # CHECK_USER_ID_MATCH = User.id == session.get('user_id')
     user = User.query.filter(User.id == session.get('user_id')).first()
     if user:
         return user.to_dict(), 200
