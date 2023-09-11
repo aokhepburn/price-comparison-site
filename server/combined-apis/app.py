@@ -156,8 +156,8 @@ def check_session():
     print(User.username)
     print(f"Current Logged User ID: {User.id}")
     print(f"Current Session User ID: {session.get('user_id')}")
-    import ipdb; ipdb.set_trace()
-    CHECK_USER_ID_MATCH = User.id == session.get('user_id')
+    # import ipdb; ipdb.set_trace()
+    # CHECK_USER_ID_MATCH = User.id == session.get('user_id')
     user = User.query.filter(User.id == session.get('user_id')).first()
     if user:
         return user.to_dict(), 200
@@ -168,7 +168,7 @@ def check_session():
 # tested in backend development
 @app.delete('/logout')
 def logout():
-    session.pop('user_id')
+    session['user_id'] = None
     return {"message": "Logged out"}, 200
 
 #accessing user's wishlist
