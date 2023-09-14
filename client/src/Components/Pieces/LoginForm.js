@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import {Redirect, useHistory} from 'react-router-dom';
+import React from "react";
+import {useHistory} from 'react-router-dom';
 import "./CSS/LoginForm.css"; // Import the CSS file
 
 export default function LoginForm({ handleChangeUsername, handleChangePassword, password, username,setCurrentUser}) {
@@ -25,9 +25,6 @@ export default function LoginForm({ handleChangeUsername, handleChangePassword, 
         });
         console.log("from login page", currentUserResponse);
         if (!currentUserResponse.error) history.push('/')
-        
-
-    // console.log("Current user form login page", currentUser)
 
     }
 
@@ -59,18 +56,3 @@ export default function LoginForm({ handleChangeUsername, handleChangePassword, 
     );
 }
 
-
-
-
-        //     // if login failed
-    //         setIsLoggedIn(true)
-    //     //alert("Logged in successfully!")
-    //     createLoginAlert()
-
-    // function createLoginAlert(e) {
-    //     if (isLoggedIn) {
-    //         alert("Logged in successfully!")
-    //     } else {
-    //         alert("Please try again ")
-    //     }
-    // }

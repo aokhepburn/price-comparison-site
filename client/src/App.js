@@ -52,18 +52,18 @@ function App() {
     };
 
     //login function
-    function attemptLogin (userInfo) {
-        fetch('/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accepts': 'application/json'
-            },
-            body: JSON.stringify(userInfo)
-        })
-            .then(response => response.json())
-            .then(data => setCurrentUser(data))
-    }
+    // function attemptLogin (userInfo) {
+    //     fetch('/login', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Accepts': 'application/json'
+    //         },
+    //         body: JSON.stringify(userInfo)
+    //     })
+    //         .then(response => response.json())
+    //         .then(data => setCurrentUser(data))
+    // }
 
     function logout() {
         fetch('/logout', {method: 'DELETE'})
@@ -110,7 +110,7 @@ function App() {
                             <CreateAccountPage createAccount={createAccount}/>
                         </Route>
                         <Route path="/login">
-                            <LoginPage attemptLogin={attemptLogin} setCurrentUser={setCurrentUser} currentUser={currentUser} />
+                            <LoginPage setCurrentUser={setCurrentUser} currentUser={currentUser} />
                         </Route>
                         <Route path="/wishlist">
                             <WishlistProducts setCurrentUser={setCurrentUser} wishlist={wishlist} />
