@@ -2,11 +2,20 @@ import React, {useState, useEffect} from "react";
 import DisplayWishlist from '../Pieces/DisplayWishlist'
 import WishlistSearchBar from '../Pieces/WishlistSearchBar'
 
-export default function WishlistProducts({wishlist}) {
+export default function WishlistProducts({wishlist, setCurrentUser }) {
 
     const [searchInput, setSearchInput] = useState("")
     console.log("this is the wishlist", wishlist)
 
+useEffect(() => {
+    fetch('/check_session')
+    .then(response => {
+        if(response.ok) {
+        response.json()
+        .then(user => setCurrentUser(user))
+        }
+    })
+    }, [])
 
 
     const filteredWishlist = wishlist.filter((product) => {  

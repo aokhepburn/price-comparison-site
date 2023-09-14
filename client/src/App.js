@@ -24,16 +24,19 @@ function App() {
     const [wishlist, setWishlist] = useState([])
     const [featuredProduct, setFeaturedProduct] = useState([])
 
-// curl -X POST -H "Content-Type: application/json" -d '{ "query": "shirt"}' localhost:5555/search
 
-
-    //LOGING + SIGNUP 
+    //check_session 
     useEffect(() => {
         fetch('/check_session')
+        .then(response => {
+            if(response.ok) {
+            response.json()
             .then(user => setCurrentUser(user))
-            .then(() => console.log("\n > useEffect completed."))
-    }, []);
+            }
+        })
+        }, [])
 
+    //create account function
     function createAccount(userInfo) {
         console.log(userInfo)
         fetch('/users', {
@@ -48,6 +51,7 @@ function App() {
             .then(data => setCurrentUser(data))
     };
 
+    //login function
     function attemptLogin (userInfo) {
         fetch('/login', {
             method: 'POST',
@@ -100,16 +104,16 @@ function App() {
                             <Welcome />
                         </Route>
                         <Route path="/products" >
-                            <Products products={products} handleAddToWishlist={handleAddToWishlist}/>
+                            <Products products={products} setCurrentUser={setCurrentUser} handleAddToWishlist={handleAddToWishlist}/>
                         </Route>
                         <Route path="/signup">
                             <CreateAccountPage createAccount={createAccount}/>
                         </Route>
                         <Route path="/login">
-                            <LoginPage attemptLogin={attemptLogin} currentUser={currentUser} />
+                            <LoginPage attemptLogin={attemptLogin} setCurrentUser={setCurrentUser} currentUser={currentUser} />
                         </Route>
                         <Route path="/wishlist">
-                            <WishlistProducts wishlist={wishlist} />
+                            <WishlistProducts setCurrentUser={setCurrentUser} wishlist={wishlist} />
                         </Route>
                     </Switch>
                 </div>
@@ -120,48 +124,3 @@ function App() {
 
 
 export default App;
-
-
-
-    // console.log(wishlist)
-
-    // const random = "constant"
-
-    // return (
-    //     <div>
-    //         <Header setProductsList={setProductsList}/>
-
-    //         <Outlet context={[ 
-    //                         handleAddToWishlist,
-    //                         handleFeaturedProduct,
-    //                         wishlist,
-    //                         products
-    //                     ]}
-    //                         // searchInput,  
-    //                         // handleFeaturedProduct ]}
-    //         />
-    //         {/* <Navbar searchInput={searchInput} handleSearch={handleSearch}/>  */}
-    //         {/* <Products products={products}/> */}
-    //         {/* <Products searchInput={searchInput} products={products} handleAddToWishlist={handleAddToWishlist} handleFeaturedProduct= {handleFeaturedProduct}/>  */}
-    //         {/* <FeaturedProduct featuredProduct={featuredProduct} handleAddToWishlist={handleAddToWishlist}/>
-    //         <CreateAccountPage createAccount={createAccount}/> 
-    //         <LoginPage attemptLogin={attemptLogin} /> 
-    //         <WishlistProducts setWishlist={setWishlist} wishlist={wishlist} /> */}
-
-    //     </div>
-
-
-    // );
-
-
-    //WISHLIST 
-
-    // function userWishlistCreated () {
-    //     fetch("url", {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type" : "application/JSON",
-    //         },
-    //         body: JSON.stringify()
-    //     })
-    // }

@@ -5,10 +5,18 @@ import DisplayProduct from '../Pieces/DisplayProduct'
 
 // Displays all of the products that are searched //
 
-export default function Products({ products, handleAddToWishlist}){
-    // console.log(products)
-    //the filtered products will render like this below, I am passing down the props to the productcard 
-    // console.log(products)
+export default function Products({ products, setCurrentUser, handleAddToWishlist}){
+
+useEffect(() => {
+    fetch('/check_session')
+    .then(response => {
+        if(response.ok) {
+        response.json()
+        .then(user => setCurrentUser(user))
+        }
+    })
+    }, [])
+
     console.log("Hi from products")
     return (
             <div className="products-display-card">

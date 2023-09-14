@@ -10,6 +10,7 @@ export default function CreateAccountForm({
 }) {
 
     const [isAccountCreated, setIsAccountCreated] = useState(true);
+    console.log(username, password)
 
     function handleSubmit(e) {
         e.preventDefault();

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from 'react-router-dom'
 import LoginForm from '../Pieces/LoginForm';
 
-export default function LoginPage({ attemptLogin, currentUser }) {
+export default function LoginPage({ attemptLogin, setCurrentUser}) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
@@ -17,7 +17,8 @@ export default function LoginPage({ attemptLogin, currentUser }) {
                 username={username}
                 password={password}
                 attemptLogin={attemptLogin}
-                currentUser={currentUser} />
+                setCurrentUser={setCurrentUser}
+            />
         </div>
     )
 };

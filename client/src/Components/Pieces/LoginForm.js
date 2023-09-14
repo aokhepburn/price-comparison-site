@@ -1,31 +1,35 @@
 import React, { useState } from "react";
+import {Redirect, useHistory} from 'react-router-dom';
 import "./CSS/LoginForm.css"; // Import the CSS file
 
-export default function LoginForm({
-    handleChangeUsername,
-    handleChangePassword,
-    password,
-    username,
-    attemptLogin
-}) 
-{
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+export default function LoginForm({ handleChangeUsername, handleChangePassword, password, username,setCurrentUser}) {
 
-    function handleSubmit(e) {
+    let history = useHistory();
+    async  function handleSubmit (e) {
         e.preventDefault();
-        attemptLogin({"username": username, "password": password })
+        // let history = useHistory();
+        let currentUserResponse;
+        await fetch('/login', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            'Accepts': 'application/json'
+            },
+            body: JSON.stringify({"username": username, "password": password })
+        })
+        .then(response => response.json())
+        .then(data => {
+            currentUserResponse = data;
+            setCurrentUser(data);
+            // navigate('/');
+        });
+        console.log("from login page", currentUserResponse);
+        if (!currentUserResponse.error) history.push('/')
+        
+
+    // console.log("Current user form login page", currentUser)
+
     }
-
-    function createLoginAlert(e) {
-        if (isLoggedIn) {
-            alert("Logged in successfully!")
-        } else {
-            alert("Please try again ")
-        }
-    }
-
-
-
 
     return (
         <form className="form-container" onSubmit={handleSubmit}>
