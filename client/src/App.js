@@ -51,26 +51,12 @@ function App() {
             .then(data => setCurrentUser(data))
     };
 
-    //login function
-    // function attemptLogin (userInfo) {
-    //     fetch('/login', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'Accepts': 'application/json'
-    //         },
-    //         body: JSON.stringify(userInfo)
-    //     })
-    //         .then(response => response.json())
-    //         .then(data => setCurrentUser(data))
-    // }
 
     function logout() {
         fetch('/logout', {method: 'DELETE'})
         .then(response => {if (response.ok) {setCurrentUser(null)}})
         console.log("logout")
     }  
-
 
     //FEATURED PRODUCT 
     function handleFeaturedProduct(clickedProduct) {

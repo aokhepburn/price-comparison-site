@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {Link, useOutletContext} from 'react-router-dom';
 import DisplayProduct from '../Pieces/DisplayProduct'
+import loadingGif from '../assets/loadinggif.gif';
 
 
 // Displays all of the products that are searched //
@@ -26,24 +27,9 @@ useEffect(() => {
                     product={product}
                     handleAddToWishlist={handleAddToWishlist}
                     />
-
                 ))}
-                <p>display products page</p>
+                <img src={loadingGif} />
             </div>
             )
 
             }
-
-    //                 filtering through the database in backend 
-
-
-
-    //                 const filteredProducts = productsData.filter(product => {  
-    // return (
-    //     product.name.toLowerCase().includes(searchInput.toLowerCase()) ||
-    //     product.title.toLowerCase().includes(searchInput.toLowerCase()) ||
-    //     product.brand.toLowerCase().includes(searchInput.toLowerCase()) ||
-    //     product.id.toLowerCase().includes(searchInput.toLowerCase()) ||
-    //     product.description.toLowerCase().includes(searchInput.toLowerCase()) ||
-    //     product.size.toLowerCase().includes(searchInput.toLowerCase())
-    // )});

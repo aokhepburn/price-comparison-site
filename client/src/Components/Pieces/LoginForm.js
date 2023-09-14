@@ -7,7 +7,6 @@ export default function LoginForm({ handleChangeUsername, handleChangePassword, 
     let history = useHistory();
     async  function handleSubmit (e) {
         e.preventDefault();
-        // let history = useHistory();
         let currentUserResponse;
         await fetch('/login', {
             method: 'POST',
@@ -21,9 +20,7 @@ export default function LoginForm({ handleChangeUsername, handleChangePassword, 
         .then(data => {
             currentUserResponse = data;
             setCurrentUser(data);
-            // navigate('/');
         });
-        console.log("from login page", currentUserResponse);
         if (!currentUserResponse.error) history.push('/')
 
     }

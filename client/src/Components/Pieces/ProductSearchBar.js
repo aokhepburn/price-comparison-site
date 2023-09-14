@@ -1,20 +1,15 @@
 import React, {useState} from "react";
 import styled from 'styled-components';
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 
 function ProductSearchBar ({ setProductsList }) {
 
     const [newSearch, setNewSearch] = useState("") //setting state for the search
-    // console.log(newSearch);
+    let history = useHistory();
 
     //PRODUCT SEARCH
     function handleSearch() {
-        /*
-        Takes in the search input (`searchInput`) and performs a Fetch API request
-        using that input string to POST newly discovered products to client.
-        */
-        // setSearchInput(userentry)
-        console.log("\n > Triggering FETCH REQUEST for backend search across products database.")
+        let productsResponse;
         fetch('/search', {
             method: 'POST',
             headers: {
@@ -24,20 +19,20 @@ function ProductSearchBar ({ setProductsList }) {
             body: JSON.stringify({"query": newSearch})
         })
         .then(response => response.json())
-        .then(products => setProductsList(products));
+        .then(products => {;
+            productsResponse = products
+            setProductsList(products)
+        });
+        if (!productsResponse) {history.push('/products')}
     }
 
     function handleChange(e) {
-        // console.log("Logging prior to setter execution.")
         setNewSearch(e.target.value)
-        // console.log("Logging after setter execution.")
     }
 
     function handleSubmit (e) {
         e.preventDefault()
-        console.log("submitted")
         handleSearch()
-        //(/search POST request to backend )
     }
 
     return (

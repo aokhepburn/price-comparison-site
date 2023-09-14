@@ -78,8 +78,6 @@ def search():
 
     items = []
 
-# {"query": data}
-
     try:
 
         for item in poshmark_data["data"]:
@@ -92,15 +90,6 @@ def search():
                 image=item["picture_url"]
             )
             items.append(poshmarkItem)
-
-        # for item in ebay_data["results"]:
-        #     ebayItem = Item(
-        #         title=item["title"],
-        #         price = item["price"],
-        #         image=item["image"],
-        #         url=item["url"]
-        #         )
-        #     items.append(ebayItem)
 
         db.session.add_all(items)
         db.session.commit()
