@@ -93,7 +93,7 @@ function App() {
                             <Products products={products} setCurrentUser={setCurrentUser} handleAddToWishlist={handleAddToWishlist}/>
                         </Route>
                         <Route path="/signup">
-                            <CreateAccountPage createAccount={createAccount}/>
+                            <CreateAccountPage createAccount={createAccount} />
                         </Route>
                         <Route path="/login">
                             <LoginPage setCurrentUser={setCurrentUser} currentUser={currentUser} />
@@ -103,6 +103,7 @@ function App() {
                         </Route>
                     </Switch>
                 </div>
+                <Footer />
             </div>
         </Router>
     )

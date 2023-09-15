@@ -9,8 +9,8 @@ function Header ({ setProductsList, currentUser, logout }) {
         <header>
             <Navbar setProductsList={setProductsList} currentUser={currentUser} logout={logout} /> 
             {/* <Outlet/> */}
-            <FooterNavbar />
-        </header> 
+            {/* <FooterNavbar /> */}
+        </header>
     )
 };
 

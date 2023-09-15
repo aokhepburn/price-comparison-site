@@ -6,10 +6,11 @@ import App from "../App"
 export default function Root() {
     return (
         <div>
-            <Header/>
-            <App/>{
-            /* <Footer/> */}
-            <h1>What am I?</h1>
+            <Header />
+            <App />{
+                // /* <Footer/> */}
+                <h1>What am I?</h1>
+            }
         </div>
     )
 }
