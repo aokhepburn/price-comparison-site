@@ -4,10 +4,10 @@ import {Link} from 'react-router-dom';
 // this is the individal card that the product will be displayed in 
 
 export default function DisplayProduct ({ product, handleAddToWishlist, handleFeaturedProduct}) {
-    console.log(product)
+    // console.log(product)
     
     function handleClick (e) {
-        handleAddToWishlist(product)
+        handleAddToWishlist(product.id)
     }
 
     function handleClickedProduct (e) {

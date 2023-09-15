@@ -24,7 +24,7 @@ class User(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
-    email = db.Column(db.String(100), unique=True, nullable=False)
+    # email = db.Column(db.String(100), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
     
     wishlists = db.relationship("Wishlist", back_populates="user")
@@ -50,8 +50,12 @@ class Item_Wishlist_Association(db.Model):
     item_id = db.Column(db.Integer, db.ForeignKey("item.id"))
     wishlist_id = db.Column("wishlist_id", db.Integer, db.ForeignKey("wishlist_table.id"))
 
-    wishlist_object = db.relationship("Wishlist", back_populates="wishlist_for_items")
-    item_object = db.relationship("Item", back_populates="items_in_wishlist")
+    wishlist_object = db.relationship("Wishlist", back_populates="wishlist_for_items") #signaling where to have the relationship with 
+    item_object = db.relationship("Item", back_populates="items_in_wishlist") 
+    #need a way of associating 2 diff data structures 
+    #remember kash ordered latte and that it belongs to kash 
+    #need to remember users orders 
+
 
 class Item(db.Model):
     __tablename__ = 'item'

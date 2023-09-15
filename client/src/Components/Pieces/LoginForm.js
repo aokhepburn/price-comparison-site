@@ -1,16 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
+import {useHistory} from 'react-router-dom';
 import "./CSS/LoginForm.css"; // Import the CSS file
 
-export default function LoginForm({
-    handleChangeUsername,
-    handleChangePassword,
-    password,
-    username,
-    attemptLogin,
-}) {
-    function handleSubmit(e) {
+export default function LoginForm({ handleChangeUsername, handleChangePassword, password, username,setCurrentUser}) {
+
+    let history = useHistory();
+    async  function handleSubmit (e) {
         e.preventDefault();
-        attemptLogin({ username, password });
+        let currentUserResponse;
+        await fetch('/login', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            'Accepts': 'application/json'
+            },
+            body: JSON.stringify({"username": username, "password": password })
+        })
+        .then(response => response.json())
+        .then(data => {
+            currentUserResponse = data;
+            setCurrentUser(data);
+        });
+        if (!currentUserResponse.error) history.push('/')
+
     }
 
     return (
@@ -40,3 +52,4 @@ export default function LoginForm({
         </form>
     );
 }
+
